@@ -46,7 +46,7 @@ Installation and requirements
 -----------------------------
 
 MCBooster is a header only library, so no build process is necessary to install it.
-The library run on Linux systems and requires C++11 and Thrust library. The code samples require [ROOT](https://root.cern.ch/) and [TCLAP](http://tclap.sourceforge.net/) library. 
+The library run on Linux systems and requires C++11 and the [Thrust library](https://thrust.github.io/). The code samples require [ROOT](https://root.cern.ch/) and [TCLAP](http://tclap.sourceforge.net/) library. 
 CUDA based projects will require a local installation of [CUDA Tookit](https://developer.nvidia.com/cuda-toolkit) with version 6.5 or higher.  
 Alternatively, projects the targeting [OpenMP](http://openmp.org/wp/) backend can be compiled with nvcc or gcc directly. 
 
