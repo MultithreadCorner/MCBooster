@@ -1,8 +1,0 @@
-<map id="MCBooster::Vector4R::get" name="MCBooster::Vector4R::get">
-<area shape="rect" id="node2" href="$class_m_c_booster_1_1_vector4_r.html#a4e0374fc1088cfbe9681959eb5956ba2" title="MCBooster::Vector4R\l::applyBoostTo" alt="" coords="243,64,393,105"/>
-<area shape="rect" id="node4" href="$struct_m_c_booster_1_1_decay_mothers.html#afcd4e118b5ebd8731fe19143d792b4c2" title="MCBooster::DecayMothers\l::process" alt="" coords="453,5,635,47"/>
-<area shape="rect" id="node5" href="$struct_m_c_booster_1_1_decay_mother.html#a9e23769d9940c18a017339557b669416" title="MCBooster::DecayMother\l::process" alt="" coords="457,123,631,164"/>
-<area shape="rect" id="node6" href="$struct_m_c_booster_1_1_decay_mother.html#a7812806dae1288700a07d06275a72096" title="MCBooster::DecayMother\l::DecayMother" alt="" coords="231,181,405,223"/>
-<area shape="rect" id="node7" href="$class_m_c_booster_1_1_vector4_r.html#a72c68093fd200376fbe28a2254592c44" title="MCBooster::Vector4R\l::Vector4R" alt="" coords="243,247,393,288"/>
-<area shape="rect" id="node3" href="$namespace_m_c_booster.html#a8fa6b4e764664cfda2377f17ba1914f7" title="MCBooster::boostTo" alt="" coords="473,71,615,98"/>
-</map>
