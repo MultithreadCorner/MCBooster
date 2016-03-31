@@ -1,1 +1,6 @@
-webpage/htm/
+webpage/
+build/
+.settings/
+.cproject
+.project
+
