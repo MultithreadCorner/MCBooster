@@ -1,5 +1,5 @@
-
-                           Library 
+MCBooster
+=========
 
   What is it?
   -----------
