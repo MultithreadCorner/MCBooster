@@ -1,52 +1,66 @@
 MCBooster
 =========
 
-  What is it?
-  -----------
-  MCBooster is an header only library designed for the fast generation of
-  phase space events. The library make use of thrust library and can deploy OpenMP
-  threads, CUDA and Xeon Phi cores. It is focused on performance and precision.  
+What is it?
+-----------
+MCBooster is an header only library designed for the fast generation of
+phase space events. The library make use of thrust library and can deploy OpenMP
+threads, CUDA and Xeon Phi cores. It is focused on performance and precision.  
 
-  The Latest Version
-  ------------------
+The Latest Version
+------------------
 
-  Details of the latest version can be found on the 
-  project page under http://.
+The latest version can be found on the 
+[project relases page](https://github.com/MultithreadCorner/MCBooster/releases)
 
-  Documentation
-  -------------
+Documentation
+-------------
 
-  The complete and updated Doxygen source code documentation of this release is available in HTML format on 
-  [reference manual](http://multithreadcorner.github.io/MCBooster/) webpage.
-  User can also browse the documentation by class, file or name using the following links:
-  
-  	[classe](http://multithreadcorner.github.io/MCBooster/classes.html)
-  
-  	[file](http://multithreadcorner.github.io/MCBooster/files.html)
-  
-  	[name](http://multithreadcorner.github.io/MCBooster/namespacemembers.html)
-  
-  
-  Examples
-  --------
-  Some example code samples demonstrating the basic usage of the library are installed in src. 
-  These samples can be built using CMAKE according the following instructions:
-  
-		 1. download the project tarball of the [latest release](https://github.com/MultithreadCorner/MCBooster/releases) or [clone the git repository](https://github.com/MultithreadCorner/MCBooster/releases)
+The complete and updated Doxygen source code documentation of this release is available in HTML format on 
+[reference manual](http://multithreadcorner.github.io/MCBooster/) webpage.
+User can also browse the documentation by class, file or name using the following links:
+
+1.[classe](http://multithreadcorner.github.io/MCBooster/classes.html)
+
+2.[file](http://multithreadcorner.github.io/MCBooster/files.html)
+
+3.[name](http://multithreadcorner.github.io/MCBooster/namespacemembers.html)
 
 
-  Installation and requirements 
-  -----------------------------
-  The library requires C++11 and Thrust library. Code samples require ROOT and TCLAP. 
-  CUDA based projects will require a local installation of CUDA Tookit version 6.5 or higher.  
+Examples
+--------
 
+Some example code samples demonstrating the basic usage of the library are installed in src. 
+These samples can be built using CMAKE according the following instructions:
 
-  Licensing
-  ---------
+1. download the project tarball of the [latest release](https://github.com/MultithreadCorner/MCBooster/releases) and extract it or [clone the git repository](https://github.com/MultithreadCorner/MCBooster.git)
+2. cd directory-of-the-project
+3. mkdir build
+4. cmake ../
+5. make
+6. make install
 
-  Please see the file called COPYING.
+The targets will be installed into directory-of-the-project/bin. To run an example do ./example-name
 
-  Contacts
-  --------
+Installation and requirements 
+-----------------------------
 
-  *) Antonio Augusto Alves Jr <aalvesju@gmail.com>
+MCBooster is a header only library, so no build process is necessary to install it.
+The library requires C++11 and Thrust library. The code samples require ROOT and TCLAP. 
+CUDA based projects will require a local installation of CUDA Tookit with version 6.5 or higher.  
+Alternatively, projects targeting OpenMP can be compiled with gcc directly. 
+
+Licensing
+---------
+
+MCBooster is released under the [GNU General Public License version 3](http://www.gnu.org/licenses/gpl-3.0.en.html). Please see the file called COPYING.
+
+Author
+--------
+
+MCBooster is developed and mantained by Antonio Augusto Alves Jr <aalvesju@gmail.com>.
+
+Acknowledgement
+---------------
+
+MCBooster's development has been supported by the National Science Foundation under grant number PHY-1414736. Any opinions, findings, and conclusions or recommendations expressed in this material are those of the developers and do not necessarily reflect the views of the National Science Foundation.
