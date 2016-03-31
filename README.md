@@ -11,12 +11,12 @@ The Latest Version
 ------------------
 
 The latest version can be found on the 
-[project relases page](https://github.com/MultithreadCorner/MCBooster/releases)
+[project relases page](https://github.com/MultithreadCorner/MCBooster/releases).
 
 Documentation
 -------------
 
-The complete and updated Doxygen source code documentation of this release is available in HTML format on 
+The complete and updated [Doxygen](www.doxygen.org/) source code documentation of this release is available in HTML format on the
 [reference manual](http://multithreadcorner.github.io/MCBooster/) webpage.
 User can also browse the documentation by class, file or name using the following links:
 
@@ -30,8 +30,8 @@ User can also browse the documentation by class, file or name using the followin
 Examples
 --------
 
-Some example code samples demonstrating the basic usage of the library are installed in src. 
-These samples can be built using CMAKE according the following instructions:
+Some example code samples demonstrating the basic usage of the library are stored in the src directory. 
+These samples can be built using [CMAKE](https://cmake.org/) according the following instructions:
 
 1. download the project tarball of the [latest release](https://github.com/MultithreadCorner/MCBooster/releases) and extract it or [clone the git repository](https://github.com/MultithreadCorner/MCBooster.git)
 2. cd directory-of-the-project
@@ -46,9 +46,9 @@ Installation and requirements
 -----------------------------
 
 MCBooster is a header only library, so no build process is necessary to install it.
-The library requires C++11 and Thrust library. The code samples require ROOT and TCLAP. 
-CUDA based projects will require a local installation of CUDA Tookit with version 6.5 or higher.  
-Alternatively, projects targeting OpenMP can be compiled with gcc directly. 
+The library run on Linux systems and requires C++11 and Thrust library. The code samples require [ROOT](https://root.cern.ch/) and [TCLAP](http://tclap.sourceforge.net/) library. 
+CUDA based projects will require a local installation of [CUDA Tookit](https://developer.nvidia.com/cuda-toolkit) with version 6.5 or higher.  
+Alternatively, projects the targeting [OpenMP](http://openmp.org/wp/) backend can be compiled with nvcc or gcc directly. 
 
 Licensing
 ---------
@@ -58,7 +58,7 @@ MCBooster is released under the [GNU General Public License version 3](http://ww
 Author
 --------
 
-MCBooster is developed and mantained by Antonio Augusto Alves Jr <aalvesju@gmail.com>.
+MCBooster is developed and mantained by [Antonio Augusto Alves Jr](@AAAlvesJr).
 
 Acknowledgement
 ---------------
