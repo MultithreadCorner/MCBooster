@@ -33,12 +33,11 @@ Examples
 Some example code samples demonstrating the basic usage of the library are stored in the src directory. 
 These samples can be built using [CMAKE](https://cmake.org/) according the following instructions:
 
-1. download the project tarball of the [latest release](https://github.com/MultithreadCorner/MCBooster/releases) and extract it or [clone the git repository](https://github.com/MultithreadCorner/MCBooster.git)
-2. cd directory-of-the-project
-3. mkdir build
-4. cmake ../
-5. make
-6. make install
+1. clone the git repository: `git clone https://github.com/MultithreadCorner/MCBooster.git`
+2. go to MCBooster directory: `cd MCBooster`
+3. create a build directory: `mkdir build` 
+4. `cmake ../`
+5. `make`
 
 The targets will be installed into directory-of-the-project/bin. To run an example do ./example-name
 
