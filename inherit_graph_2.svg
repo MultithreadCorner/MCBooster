@@ -10,7 +10,7 @@
 <title>Graphical Class Hierarchy</title>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
-<g id="a_node1"><a xlink:href="d3/d2e/struct_m_c_booster_1_1_calculate.html" target="_top" xlink:title="MCBooster::Calculate\l\&lt; FUNCTION, RESULT \&gt;">
+<g id="a_node1"><a xlink:href="struct_m_c_booster_1_1_calculate.html" target="_top" xlink:title="MCBooster::Calculate\l\&lt; FUNCTION, RESULT \&gt;">
 <polygon fill="none" stroke="black" points="0,-0.5 0,-30.5 133,-30.5 133,-0.5 0,-0.5"/>
 <text text-anchor="start" x="8" y="-18.5" font-family="Helvetica,sans-Serif" font-size="10.00">MCBooster::Calculate</text>
 <text text-anchor="middle" x="66.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; FUNCTION, RESULT &gt;</text>

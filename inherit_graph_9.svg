@@ -10,7 +10,7 @@
 <title>Graphical Class Hierarchy</title>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
-<g id="a_node1"><a xlink:href="d3/d09/class_m_c_booster_1_1_phase_space.html" target="_top" xlink:title="Implementation of the event generator. ">
+<g id="a_node1"><a xlink:href="class_m_c_booster_1_1_phase_space.html" target="_top" xlink:title="Implementation of the event generator. ">
 <polygon fill="none" stroke="black" points="0,-0.5 0,-19.5 128,-19.5 128,-0.5 0,-0.5"/>
 <text text-anchor="middle" x="64" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">MCBooster::PhaseSpace</text>
 </a>
