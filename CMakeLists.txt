@@ -98,53 +98,56 @@ if(BUILD_CUDA_TARGETS)
 
 #make cuda targets
 
-    cuda_add_executable(MCBoosterGenerateSample
+    cuda_add_executable(MCBooster_Example_CUDA_GenerateSample
 	${CMAKE_CURRENT_SOURCE_DIR}/src/GenerateSample.cu
 	)
 	
-	target_link_libraries(MCBoosterGenerateSample
+	target_link_libraries(MCBooster_Example_CUDA_GenerateSample
 	${ROOT_LIBRARIES}
 	rt
 	)
 	
-	cuda_add_executable(MCBoosterCUDA
+	cuda_add_executable(MCBooster_Example_CUDA_B2KPiJpsi
 	${CMAKE_CURRENT_SOURCE_DIR}/src/Generate.cu
 	)
 	
-	target_link_libraries(MCBoosterCUDA
+	target_link_libraries(MCBooster_Example_CUDA_B2KPiJpsi
 	${ROOT_LIBRARIES}
 	rt
 	)
-	
-	cuda_add_executable(PerfTest_MCBoosterCUDA
-	${CMAKE_CURRENT_SOURCE_DIR}/src/PerformanceTest.cu
-	)
-	
-	target_link_libraries(PerfTest_MCBoosterCUDA
-	${ROOT_LIBRARIES}
-	rt	
-	)
-	
-	cuda_add_executable(MCBoosterOpenMP_NVCC
+		
+	cuda_add_executable(MCBooster_Example_OpenMP_NVCC_B2KPiJpsi
 	${CMAKE_CURRENT_SOURCE_DIR}/src/Generate.cu
 	OPTIONS -DTHRUST_DEVICE_SYSTEM=THRUST_DEVICE_SYSTEM_OMP
 	)
 	
-	target_link_libraries(MCBoosterOpenMP_NVCC
+	target_link_libraries(MCBooster_Example_OpenMP_NVCC_B2KPiJpsi
 	${ROOT_LIBRARIES}
 	rt
 	)
+	
+	cuda_add_executable(MCBooster_Example_CUDA_PerformanceTest
+	${CMAKE_CURRENT_SOURCE_DIR}/src/PerformanceTest.cu
+	)
+	
+	target_link_libraries(MCBooster_Example_CUDA_PerformanceTest
+	${ROOT_LIBRARIES}
+	rt	
+	)
+	
+	
 	
 endif(BUILD_CUDA_TARGETS)
 
 
 
-add_executable(MCBoosterOpenMP_GCC
+add_executable(MCBooster_Example_OpenMP_GCC_B2KPiJpsi
 ${CMAKE_CURRENT_SOURCE_DIR}/src/Generate.cpp
 )
-set_target_properties( MCBoosterOpenMP_GCC PROPERTIES COMPILE_FLAGS "-std=c++11 -DTHRUST_DEVICE_SYSTEM=THRUST_DEVICE_SYSTEM_OMP" )
 
-target_link_libraries(MCBoosterOpenMP_GCC
+set_target_properties( MCBooster_Example_OpenMP_GCC_B2KPiJpsi PROPERTIES COMPILE_FLAGS "-std=c++11 -DTHRUST_DEVICE_SYSTEM=THRUST_DEVICE_SYSTEM_OMP" )
+
+target_link_libraries( MCBooster_Example_OpenMP_GCC_B2KPiJpsi
 ${ROOT_LIBRARIES}
 rt
 )
