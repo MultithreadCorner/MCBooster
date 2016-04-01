@@ -1,8 +1,0 @@
-Install instructions
---------------------
-
-1) clone the git repository 
-2) cd /package
-3) mkdir build 
-4) cmake ../
-5) make 
