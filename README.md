@@ -53,7 +53,7 @@ Alternatively, projects the targeting [OpenMP](http://openmp.org/wp/) backend ca
 Licensing
 ---------
 
-MCBooster is released under the [GNU General Public License version 3](http://www.gnu.org/licenses/gpl-3.0.en.html). Please see the file called COPYING.
+MCBooster is released under the [GNU General Public License version 3](http://www.gnu.org/licenses/gpl-3.0.en.html). Please see the file called [COPYING](https://github.com/MultithreadCorner/MCBooster/blob/master/COPYING).
 
 Author
 --------
