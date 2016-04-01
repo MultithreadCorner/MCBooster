@@ -63,4 +63,4 @@ MCBooster is developed and mantained by [Antonio Augusto Alves Jr](@AAAlvesJr).
 Acknowledgement
 ---------------
 
-MCBooster's development has been supported by the National Science Foundation under grant number PHY-1414736. Any opinions, findings, and conclusions or recommendations expressed in this material are those of the developers and do not necessarily reflect the views of the National Science Foundation.
+MCBooster's development has been supported by the [National Science Foundation](http://nsf.gov/index.jsp) under grant number [PHY-1414736](http://nsf.gov/awardsearch/showAward?AWD_ID=1414736). Any opinions, findings, and conclusions or recommendations expressed in this material are those of the developers and do not necessarily reflect the views of the National Science Foundation.
