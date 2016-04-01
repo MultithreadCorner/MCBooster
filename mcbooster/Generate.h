@@ -62,6 +62,7 @@
 #include <thrust/tuple.h>
 #include <thrust/extrema.h>
 #include <thrust/count.h>
+#include <thrust/fill.h>
 
 #if !(THRUST_DEVICE_SYSTEM==THRUST_DEVICE_BACKEND_OMP || THRUST_DEVICE_SYSTEM==THRUST_DEVICE_BACKEND_TBB)
 #include <thrust/system/cuda/execution_policy.h>
@@ -345,15 +346,27 @@ GULong_t PhaseSpace::Unweight()
 	/**
 	 * Flag the accepted and rejected events
 	 */
+
+	GULong_t count = 0;
+	if(fNDaughters==2)
+	{
+		thrust::fill(fAccRejFlags.begin(), fAccRejFlags.end(), kTrue);
+		count = fNEvents;
+	}
+	else
+	{
 	mc_device_vector<GLong_t> Evt(fNEvents);
 	thrust::sequence(Evt.begin(), Evt.end());
 
 	thrust::transform(Evt.begin(), Evt.end(), fWeights.begin(),
 			fAccRejFlags.begin(), FlagAcceptReject(fMaxWeight));
 
-	GULong_t count = thrust::count(fAccRejFlags.begin(), fAccRejFlags.end(),
+	count = thrust::count(fAccRejFlags.begin(), fAccRejFlags.end(),
 			kTrue);
+
+	}
 	return count;
+
 }
 
 

@@ -1,4 +1,28 @@
+/*
+ * Generate.cpp
+ *
+ * Copyright 2016 Antonio Augusto Alves Junior
+ *
+ * Created on : 10/03/2016
+ *      Author: augalves
+ */
 
+/*
+    This file is part of MCBooster.
+
+    MCBooster is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    MCBooster is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with MCBooster.  If not, see <http://www.gnu.org/licenses/>.
+*/
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -10,8 +34,6 @@
 
 #include <math.h>
 
-//command line
-//#include <tclap/CmdLine.h>
 #define CUDA_API_PER_THREAD_DEFAULT_STREAM
 
 //this lib
@@ -126,7 +148,7 @@ GInt_t main(void)
 	TApplication *myapp=new TApplication("myapp",0,0);
 
 	GLong_t events = 10000000;
-	size_t ndaughters = 3;
+	size_t  ndaughters = 3;
 	GReal_t mass0 = 5.2795;
 
 	//Particles mothers(events, Vector4R(5.2795,0.0,0.0,0.0) );
@@ -150,6 +172,7 @@ GInt_t main(void)
 	cout << "=========================================================" << endl;
 	cout << "===================   B0 -> J/psi K pi=  ================" << endl;
 	cout << "=========================================================" << endl;
+    cout << "Number of events: " << events << endl;
 
 	clock_gettime(CLOCK_REALTIME, &time1);
 
@@ -216,6 +239,7 @@ GInt_t main(void)
 	cout << "=========================================================" << endl;
 	cout << "====================   J/psi -> mu mu  ==================" << endl;
 	cout << "=========================================================" << endl;
+    cout << "Number of events: " << events << endl;
 
 
 	//Decays trees(mothers, names, masses );

@@ -135,7 +135,15 @@ if(BUILD_CUDA_TARGETS)
 	rt	
 	)
 	
+	cuda_add_executable(MCBooster_Example_OpenMP_NVCC_PerformanceTest
+	${CMAKE_CURRENT_SOURCE_DIR}/src/PerformanceTest.cu
+	OPTIONS -DTHRUST_DEVICE_SYSTEM=THRUST_DEVICE_SYSTEM_OMP
+	)
 	
+	target_link_libraries(MCBooster_Example_OpenMP_NVCC_PerformanceTest
+	${ROOT_LIBRARIES}
+	rt	
+	)
 	
 endif(BUILD_CUDA_TARGETS)
 
@@ -153,45 +161,49 @@ rt
 )
 
 
-#cuda_add_executable(PerfTest_MCBoosterOpenMP 
-#${CMAKE_CURRENT_SOURCE_DIR}/src/PerformanceTest.cu
-#OPTIONS -DTHRUST_DEVICE_SYSTEM=THRUST_DEVICE_SYSTEM_OMP
-#)
+add_executable(MCBooster_Example_OpenMP_GCC_PerformanceTest 
+${CMAKE_CURRENT_SOURCE_DIR}/src/PerformanceTest.cpp
+)
 
+set_target_properties( MCBooster_Example_OpenMP_GCC_PerformanceTest PROPERTIES COMPILE_FLAGS "-std=c++11 -DTHRUST_DEVICE_SYSTEM=THRUST_DEVICE_SYSTEM_OMP" )
 
-#target_link_libraries(PerfTest_MCBoosterOpenMP
-#${ROOT_LIBRARIES}
-#rt
-#)
+target_link_libraries(MCBooster_Example_OpenMP_GCC_PerformanceTest
+${ROOT_LIBRARIES}
+rt
+)
 
-install(DIRECTORY include
+install(DIRECTORY mcbooster
   DESTINATION include)
 
 install(DIRECTORY 
 	src
-  DESTINATION src)
+  DESTINATION src/mcbooster/samples)
   
 install(DIRECTORY 
 	cmake
-  DESTINATION cmake)
+  DESTINATION src/mcbooster/cmake)
 
 install(FILES
   CMakeLists.txt
   COPYING
-  Doxyfile
-  Doxyfile.in
-  MCBooster.h.in
-  DESTINATION ./)
+  THANKS.md
+  README.md
+  CHANGELOG.md
+  DESTINATION src/mcbooster)
   
 if(BUILD_CUDA_TARGETS)
-	install(TARGETS MCBoosterCUDA DESTINATION bin)
-	install(TARGETS PerfTest_MCBoosterCUDA DESTINATION bin)
-	install(TARGETS MCBoosterOpenMP_NVCC DESTINATION bin)
+    #generic generator
+	install(TARGETS MCBooster_Example_CUDA_GenerateSample DESTINATION bin)
+	#complete B0 -> J/psi K pi
+	install(TARGETS MCBooster_Example_CUDA_B2KPiJpsi DESTINATION bin)
+	install(TARGETS MCBooster_Example_OpenMP_NVCC_B2KPiJpsi DESTINATION bin)
+	#performance test
+	install(TARGETS MCBooster_Example_CUDA_PerformanceTest DESTINATION bin)
+	install(TARGETS MCBooster_Example_OpenMP_NVCC_PerformanceTest DESTINATION bin)
 endif()
 
-install(TARGETS MCBoosterOpenMP_GCC DESTINATION bin)
-#install(TARGETS PerfTest_MCBoosterOpenMP DESTINATION bin)
-
+install(TARGETS MCBooster_Example_OpenMP_GCC_PerformanceTest DESTINATION bin)
+install(TARGETS MCBooster_Example_OpenMP_GCC_B2KPiJpsi DESTINATION bin)
 
 if(BUILD_DOCUMENTATION)
 
@@ -210,7 +222,7 @@ if(BUILD_DOCUMENTATION)
         COMMENT "Generating API documentation with Doxygen"
         VERBATIM)
 
-    install(DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/doc DESTINATION doc)
+    install(DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/doc DESTINATION src/mcbooster/doc)
     
 endif()
 
