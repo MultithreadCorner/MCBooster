@@ -20,11 +20,11 @@ The complete and updated [Doxygen](http://www.doxygen.org/) source code document
 [reference manual](http://multithreadcorner.github.io/MCBooster/) webpage.
 User can also browse the documentation by class, file or name using the following links:
 
-1.[classe](http://multithreadcorner.github.io/MCBooster/classes.html)
+1.[classes](http://multithreadcorner.github.io/MCBooster/classes.html)
 
-2.[file](http://multithreadcorner.github.io/MCBooster/files.html)
+2.[files](http://multithreadcorner.github.io/MCBooster/files.html)
 
-3.[name](http://multithreadcorner.github.io/MCBooster/namespacemembers.html)
+3.[names](http://multithreadcorner.github.io/MCBooster/namespacemembers.html)
 
 
 Examples
