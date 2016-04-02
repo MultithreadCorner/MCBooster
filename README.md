@@ -16,7 +16,7 @@ The latest version can be found on the
 Documentation
 -------------
 
-The complete and updated [Doxygen](www.doxygen.org/) source code documentation of this release is available in HTML format on the
+The complete and updated [Doxygen](http://www.doxygen.org/) source code documentation of this release is available in HTML format on the
 [reference manual](http://multithreadcorner.github.io/MCBooster/) webpage.
 User can also browse the documentation by class, file or name using the following links:
 
