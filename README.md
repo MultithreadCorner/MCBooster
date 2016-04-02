@@ -54,6 +54,15 @@ Licensing
 
 MCBooster is released under the [GNU General Public License version 3](http://www.gnu.org/licenses/gpl-3.0.en.html). Please see the file called [COPYING](https://github.com/MultithreadCorner/MCBooster/blob/master/COPYING).
 
+Contact the developers
+----------------------
+Here’s what you should do if you need help or would like to contribute:
+
+1. If you need help or would like to ask a general question, subscribe and use https://groups.google.com/d/forum/mcbooster.
+2. If you found a bug, use GitHub issues.
+3. If you have an idea, use GitHub issues.
+4. If you want to contribute, submit a pull request.
+
 Author
 --------
 
