@@ -48,6 +48,13 @@ find_package(Doxygen)
 option(BUILD_DOCUMENTATION "Create and install the HTML based API documentation (requires Doxygen)" NO)
 
 #options to gcc
+include(CheckCXXCompilerFlag)
+CHECK_CXX_COMPILER_FLAG("-std=c++11" COMPILER_SUPPORTS_CXX11)
+if(COMPILER_SUPPORTS_CXX11)
+ message(STATUS "The compiler ${CMAKE_CXX_COMPILER} has no C++11 support. Please use a different C++ compiler.")
+endif()
+
+#options to gcc
 set(CMAKE_CXX_FLAGS " -march=native -fPIC -O3 -fopenmp -lgomp" CACHE STRING "compile flags" FORCE)
 
 #including directories
@@ -67,7 +74,10 @@ if(CUDA_FOUND)
 	INCLUDE(${CMAKE_CURRENT_SOURCE_DIR}/cmake/FindCudaArch.cmake)
 	SELECT_NVCC_ARCH_FLAGS(NVCC_FLAGS_EXTRA)
 	LIST(APPEND CUDA_NVCC_FLAGS ${NVCC_FLAGS_EXTRA})
-	
+	#hack for gcc 5.x.x
+	if(CMAKE_CXX_COMPILER_VERSION VERSION_GREATER 4.9)
+	    LIST(APPEND CUDA_NVCC_FLAGS " -D_MWAITXINTRIN_H_INCLUDED ")
+    	endif(CMAKE_CXX_COMPILER_VERSION)
 endif(CUDA_FOUND)
 
 if((CUDA_FOUND) AND (CUDA_GPU_DETECT_OUTPUT))
