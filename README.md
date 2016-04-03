@@ -4,7 +4,7 @@ MCBooster
 What is it?
 -----------
 MCBooster is an header only library designed for the fast generation of
-phase space events. The library make use of thrust library and can deploy OpenMP
+phase space events. The library makes use of Thrust and can deploy OpenMP
 threads, CUDA and Xeon Phi cores. It is focused on performance and precision.  
 
 The Latest Version
@@ -18,7 +18,7 @@ Documentation
 
 The complete and updated [Doxygen](http://www.doxygen.org/) source code documentation of this release is available in HTML format on the
 [reference manual](http://multithreadcorner.github.io/MCBooster/) webpage.
-User can also browse the documentation by class, file or name using the following links:
+Users can also browse the documentation by class, file or name using the following links:
 
 1.[classes](http://multithreadcorner.github.io/MCBooster/classes.html)
 
@@ -40,7 +40,8 @@ These samples can be built using [CMAKE](https://cmake.org/) according the follo
 4. `cmake ../`
 5. `make`
 
-The targets will be installed into directory-of-the-project/bin. To run an example do ./example-name
+Users with root privilegies can do `make install` and get the targets installed into system-install-dir/bin (usually /usr/local. __Notice the project installation path is printed out in the setp 4__). Users without root privileges can point the installation path to a different location cmake `-DCMAKE_INSTALL_PREFIX=<user-path>/ ../`.
+To run an example do ./example-name
 
 Installation and requirements 
 -----------------------------
