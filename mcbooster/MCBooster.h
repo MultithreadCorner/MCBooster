@@ -2,9 +2,9 @@
 #define MCBooster_VERSION_MAJOR 1
 #define MCBooster_VERSION_MINOR 0
 #define MCBooster_VERSION_PATCH 1
-/**\mainpage
-MCBooster
-=========
+/**
+\mainpage Documentation
+
 Table of Contents
 =================
 
