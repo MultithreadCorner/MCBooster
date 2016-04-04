@@ -49,6 +49,7 @@
 #include <mcbooster/functors/DecayMothers.h>
 #include <mcbooster/functors/RandGen.h>
 #include <mcbooster/functors/FlagAcceptReject.h>
+#include <mcbooster/functors/IsAccepted.h>
 #include <mcbooster/strided_iterator.h>
 
 #include <thrust/copy.h>
@@ -169,9 +170,10 @@ public:
 	 * - _NEvents: it is the number of events to be generated.
 	 */
 	PhaseSpace(GReal_t _MotherMass, vector<GReal_t> _Masses, GLong_t _NEvents) :
-			fNDaughters(_Masses.size()), fNEvents(_NEvents), fRandNumbers(
-					(3 * _Masses.size() - 2) * _NEvents, 0.0), fMaxWeight(0.0), RND_Time(
-					0.0), EVT_Time(0.0), EXP_Time(0.0) {
+			fNDaughters(_Masses.size()), fNEvents(_NEvents),
+			fRandNumbers((3 * _Masses.size() - 2) * _NEvents, 0.0), fMaxWeight(0.0),
+			RND_Time(0.0), EVT_Time(0.0), EXP_Time(0.0), fNAccepted(0)
+        {
 
 		if (_Masses.size() < 2 || _Masses.size() > 9) {
 			cout
@@ -252,6 +254,10 @@ public:
 		return fNEvents;
 	}
 
+	inline GLong_t GetNAccepted() const {
+			return fNAccepted;
+		}
+
 	/**
 	 * Returns a device vector with the event weights.
 	 */
@@ -292,7 +298,7 @@ public:
 	 * Export the events and all related information to host.
 	 */
 	void Export(Events *_Events);
-
+	void ExportUnweighted(Events *_Events);
 	/**
 	 * Flag the accepted and rejected events
 	 */
@@ -328,6 +334,7 @@ private:
 
 	GLong_t fNEvents; ///< Number of events.
 	GInt_t fNDaughters;///< Number of daughters.
+	GLong_t fNAccepted;
 	GReal_t RND_Time;///< Random number generation time interval seconds.
 	GReal_t EVT_Time;///< Event generation time interval in seconds.
 	GReal_t EXP_Time;///< Events export time interval in seconds.
@@ -338,6 +345,7 @@ private:
 	BoolVector_d fAccRejFlags;///< Device vector of Accept/reject flags
 	Particles_d fDaughters[kMAXP];///< Array of device vectors with the daughter four-vectors
 	RealVector_d fRandNumbers;///<
+
 
 };
 
@@ -365,10 +373,89 @@ GULong_t PhaseSpace::Unweight()
 			kTrue);
 
 	}
+	fNAccepted=count;
 	return count;
 
 }
 
+
+
+void PhaseSpace::ExportUnweighted(Events *_Events) {
+	/**
+	 * Export the events and all related information to an Events object properly initialized.
+	 */
+
+	if(!fNAccepted) Unweight();
+
+
+	_Events->fMaxWeight = fMaxWeight;
+
+#if THRUST_DEVICE_SYSTEM==THRUST_DEVICE_BACKEND_OMP || THRUST_DEVICE_SYSTEM==THRUST_DEVICE_BACKEND_TBB
+
+#pragma omp parallel num_threads( fNDaughters + 1 )
+	{
+
+		if (omp_get_thread_num() < fNDaughters )
+		{
+			thrust::copy_if( fDaughters[omp_get_thread_num()].begin(),fDaughters[omp_get_thread_num()].end(),
+					fAccRejFlags.begin(),
+					_Events->fDaughters[omp_get_thread_num()].begin(), isAccepted() );
+		}
+
+		if (omp_get_thread_num() == fNDaughters )
+		{
+			thrust::copy_if(fWeights.begin(), fWeights.end(),
+					fAccRejFlags.begin(),
+					_Events->fWeights.begin(), isAccepted() );
+
+			thrust::copy_if(fAccRejFlags.begin(), fAccRejFlags.end(),
+					fAccRejFlags.begin(),
+					_Events->fAccRejFlags.begin(), isAccepted() );
+
+		}
+
+	}
+
+#else
+
+	cudaStream_t s[fNDaughters + 1];
+
+	for (GInt_t d = 0; d <= fNDaughters; d++) {
+
+		CUDA_CHECK_RETURN(
+				cudaStreamCreateWithFlags(&s[d], cudaStreamNonBlocking));
+	}
+
+
+
+	thrust::copy_if( thrust::cuda::par.on(s[fNDaughters]),
+			fWeights.begin(), fWeights.end(),
+									fAccRejFlags.begin(),
+									_Events->fWeights.begin(), isAccepted() );
+
+
+	thrust::copy_if( thrust::cuda::par.on(s[fNDaughters]),
+			fAccRejFlags.begin(), fAccRejFlags.end(),
+								fAccRejFlags.begin(),
+								_Events->fAccRejFlags.begin(), isAccepted() );
+
+
+	for (GInt_t d = 0; d < fNDaughters; d++) {
+
+		thrust::copy_if( thrust::cuda::par.on(s[d]),
+				fDaughters[d].begin(),fDaughters[d].end(),
+							fAccRejFlags.begin(),
+							_Events->fDaughters[d].begin(), isAccepted() );
+
+	}
+
+	cudaDeviceSynchronize();
+	for (GInt_t d = 0; d <= fNDaughters; d++)
+		cudaStreamDestroy(s[d]);
+
+#endif
+
+}
 
 void PhaseSpace::Export(Events *_Events) {
 	/**
