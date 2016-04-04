@@ -40,7 +40,7 @@ These samples can be built using [CMAKE](https://cmake.org/) according the follo
 4. `cmake ../`
 5. `make`
 
-Users with root privilegies can do `make install` and get the targets installed into system-install-dir/bin (usually /usr/local. __Notice the project installation path is printed out in the setp 4__). Users without root privileges can point the installation path to a different location cmake `-DCMAKE_INSTALL_PREFIX=<user-path>/ ../`.
+Users with root privilegies can do `make install` and get the targets installed into system-install-dir/bin (usually /usr/local. __Notice the project installation path is printed out in the setp 4__). Users without root privileges can point the installation path to a different location doing `cmake -DCMAKE_INSTALL_PREFIX=<user-path>/ ../`.
 To run an example do ./example-name
 
 Installation and requirements 
