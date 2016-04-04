@@ -292,6 +292,7 @@ GInt_t main(void)
 	phspJpsi.Generate(phsp.GetDaughters(0));
 	clock_gettime(CLOCK_REALTIME, &time2);
 
+	phspJpsi.Unweight();
 
 	GReal_t cpu_time_usedJpsi;
 	cpu_time_usedJpsi = ((GReal_t) (time_diff(time1, time2).tv_sec
@@ -444,7 +445,7 @@ GInt_t main(void)
 
 
 	 TH2D *dalitz = new TH2D("dalitz",
-			 TString::Format(";M^{2}(%s,%s) [GeV^{2}/c^{4}]; M^{2}(%s,%s) [GeV^{2}/c^{4}]"
+			 TString::Format("Weigted;M^{2}(%s,%s) [GeV^{2}/c^{4}]; M^{2}(%s,%s) [GeV^{2}/c^{4}]"
 					 , namesB0[0].c_str(), namesB0[1].c_str()
 					 , namesB0[1].c_str(), namesB0[2].c_str() ).Data(),
 					 100, pow(massesB0[0]+massesB0[2],2), pow(mass0 - massesB0[1],2),
@@ -463,7 +464,32 @@ GInt_t main(void)
 	 TCanvas *c2 = new TCanvas( "dalitz", "", 600, 500 );
 	 dalitz->Draw("COLZ");
 	 dalitz->SetStats(0);
-	 c2->Print( "dalitz.pdf" );
+	 c2->Print( "dalitzW.pdf" );
+
+	 TH2D *dalitz2 = new TH2D("dalitz2",
+			 TString::Format("Unweigted;M^{2}(%s,%s) [GeV^{2}/c^{4}]; M^{2}(%s,%s) [GeV^{2}/c^{4}]"
+					 , namesB0[0].c_str(), namesB0[1].c_str()
+					 , namesB0[1].c_str(), namesB0[2].c_str() ).Data(),
+					 100, pow(massesB0[0]+massesB0[2],2), pow(mass0 - massesB0[1],2),
+					 100, pow(massesB0[1]+massesB0[2],2), pow(mass0 - massesB0[0],2) );
+
+
+	 for(GInt_t event=0; event<events; event++ )
+	 {
+
+		 dalitz2->Fill( result_MJpsipi[event]*result_MJpsipi[event],
+				 result_MKpi[event]*result_MKpi[event],
+				 MyEvents->fAccRejFlags[event]  );
+
+	 }
+
+
+	 TCanvas *c3 = new TCanvas( "dalitz2", "", 600, 500 );
+		 dalitz2->Draw("COLZ");
+		 dalitz2->SetStats(0);
+		 c2->Print( "dalitzU.pdf" );
+
+
 
 	 myapp->Run();
 	 return 0;
