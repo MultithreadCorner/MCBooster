@@ -82,7 +82,7 @@ if(CUDA_FOUND)
     	endif()
 endif(CUDA_FOUND)
 
-if((CUDA_FOUND) )
+if( CUDA_FOUND )
 
 	SET(BUILD_CUDA_TARGETS  ON)
 
