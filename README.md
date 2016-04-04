@@ -1,5 +1,19 @@
 MCBooster
 =========
+Table of Contents
+=================
+
+  * [MCBooster](#mcbooster)
+    * [What is it?](#what-is-it)
+    * [Main features](#main-features)
+    * [The Latest Version](#the-latest-version)
+    * [Documentation](#documentation)
+    * [Installation and requirements ](#installation-and-requirements-)
+    * [Examples](#examples)
+    * [Licensing](#licensing)
+    * [Contact the developers](#contact-the-developers)
+    * [Author](#author)
+    * [Acknowledgement](#acknowledgement)
 
 What is it?
 -----------
