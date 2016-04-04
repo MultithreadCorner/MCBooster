@@ -44,7 +44,7 @@ and intuitive interface. Example:
 #include <mcbooster/GTypes.h>
 #include <mcbooster/Vector4R.h>
 #include <mcbooster/Generate.h>
- ...
+// ...
 //setting the mother particle
 Vector4R B0(5.2795, 0.0, 0.0, 0.0);
  
@@ -66,8 +66,9 @@ phsp.Unweight();
 //export events to the host (in case it is necessary)
 Events *GenEvents = new Events(masses.size(), 10000000);
 phsp.Export(GenEvents);
-...
+//...
 ```
+
 Other key features are:
 
 1. Decays can be generated with mother particles are rest or with a definite four-vector.
