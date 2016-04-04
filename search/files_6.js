@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['randgen_2eh',['RandGen.h',['../_rand_gen_8h.html',1,'']]]
+  ['mcbooster_2eh',['MCBooster.h',['../_m_c_booster_8h.html',1,'']]]
 ];

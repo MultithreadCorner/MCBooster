@@ -4,7 +4,7 @@ var searchData=
   ['particles_5fh',['Particles_h',['../namespace_m_c_booster.html#ae8ded5e67770ea0bbb957e349019d82e',1,'MCBooster']]],
   ['particlesset_5fd',['ParticlesSet_d',['../namespace_m_c_booster.html#ab44bd99f0bf16e15b7c10e887f55e130',1,'MCBooster']]],
   ['particlesset_5fh',['ParticlesSet_h',['../namespace_m_c_booster.html#ab2dc7887e46dd36663a6f432d199c38b',1,'MCBooster']]],
-  ['pdk',['PDK',['../class_m_c_booster_1_1_phase_space.html#a5dbc0d7599ea07a083c0a9ac284a4f9b',1,'MCBooster::PhaseSpace::PDK()'],['../struct_m_c_booster_1_1_decay_mother.html#a4e533b10b803a42ec85da3806d11b3f5',1,'MCBooster::DecayMother::pdk()'],['../struct_m_c_booster_1_1_decay_mothers.html#ab74320b8fc863ba2a3ab507bbef09899',1,'MCBooster::DecayMothers::pdk()']]],
+  ['pdk',['pdk',['../struct_m_c_booster_1_1_decay_mother.html#a4e533b10b803a42ec85da3806d11b3f5',1,'MCBooster::DecayMother::pdk()'],['../struct_m_c_booster_1_1_decay_mothers.html#ab74320b8fc863ba2a3ab507bbef09899',1,'MCBooster::DecayMothers::pdk()'],['../class_m_c_booster_1_1_phase_space.html#a5dbc0d7599ea07a083c0a9ac284a4f9b',1,'MCBooster::PhaseSpace::PDK()']]],
   ['permutationiterator',['PermutationIterator',['../classstrided__range.html#a5fa7e0b118e4c7baf1dd51a4ab8e7aba',1,'strided_range']]],
   ['phasespace',['PhaseSpace',['../class_m_c_booster_1_1_phase_space.html#a3324b4cef929a0d21e6479600b8bd744',1,'MCBooster::PhaseSpace']]],
   ['phasespace',['PhaseSpace',['../class_m_c_booster_1_1_phase_space.html',1,'MCBooster']]],

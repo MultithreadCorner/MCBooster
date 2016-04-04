@@ -9,6 +9,7 @@ var hierarchy =
     [ "MCBooster::FlagAcceptReject", "struct_m_c_booster_1_1_flag_accept_reject.html", null ],
     [ "MCBooster::IFunction< RESULT >", "struct_m_c_booster_1_1_i_function.html", null ],
     [ "MCBooster::IFunctionArray", "struct_m_c_booster_1_1_i_function_array.html", null ],
+    [ "MCBooster::isAccepted", "struct_m_c_booster_1_1is_accepted.html", null ],
     [ "MCBooster::PhaseSpace", "class_m_c_booster_1_1_phase_space.html", null ],
     [ "MCBooster::RandGen", "struct_m_c_booster_1_1_rand_gen.html", null ],
     [ "strided_range< Iterator >", "classstrided__range.html", null ],

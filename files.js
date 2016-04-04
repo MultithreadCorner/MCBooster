@@ -24,6 +24,9 @@ var files =
       [ "IFunctionArray", "struct_m_c_booster_1_1_i_function_array.html", "struct_m_c_booster_1_1_i_function_array" ]
     ] ],
     [ "GTypes.h", "_g_types_8h.html", "_g_types_8h" ],
+    [ "IsAccepted.h", "_is_accepted_8h.html", [
+      [ "isAccepted", "struct_m_c_booster_1_1is_accepted.html", "struct_m_c_booster_1_1is_accepted" ]
+    ] ],
     [ "MCBooster.h", "_m_c_booster_8h.html", "_m_c_booster_8h" ],
     [ "RandGen.h", "_rand_gen_8h.html", [
       [ "RandGen", "struct_m_c_booster_1_1_rand_gen.html", "struct_m_c_booster_1_1_rand_gen" ]

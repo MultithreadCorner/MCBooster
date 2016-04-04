@@ -6,6 +6,7 @@ var searchData=
   ['getevttime',['GetEvtTime',['../class_m_c_booster_1_1_phase_space.html#ad83741df5b5b14a66826d3ce5406fa31',1,'MCBooster::PhaseSpace']]],
   ['getexptime',['GetExpTime',['../class_m_c_booster_1_1_phase_space.html#a298d95fdefea045fccae8380f23d5516',1,'MCBooster::PhaseSpace']]],
   ['getmaxweight',['GetMaxWeight',['../class_m_c_booster_1_1_phase_space.html#afd81104bec16d06353b3fae98b756666',1,'MCBooster::PhaseSpace']]],
+  ['getnaccepted',['GetNAccepted',['../class_m_c_booster_1_1_phase_space.html#a82926e6df21bd5d73aa6d65c9deb0b71',1,'MCBooster::PhaseSpace']]],
   ['getndaughters',['GetNDaughters',['../class_m_c_booster_1_1_phase_space.html#a781bb83e4c0f57bff5bbd9bc2cf0122d',1,'MCBooster::PhaseSpace']]],
   ['getnevents',['GetNEvents',['../class_m_c_booster_1_1_phase_space.html#ab5b671c57005fe9fc7962898bf5234f1',1,'MCBooster::PhaseSpace']]],
   ['getrndtime',['GetRndTime',['../class_m_c_booster_1_1_phase_space.html#a7f57932f43a8ad57536ed4414c4fd24c',1,'MCBooster::PhaseSpace']]],

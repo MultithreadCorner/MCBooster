@@ -10,9 +10,9 @@
 <title>Graphical Class Hierarchy</title>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
-<g id="a_node1"><a xlink:href="class_m_c_booster_1_1_vector3_r.html" target="_top" xlink:title="MCBooster::Vector3R">
+<g id="a_node1"><a xlink:href="struct_m_c_booster_1_1_rand_gen.html" target="_top" xlink:title="Fill a given vector with random numbers between 0 and 1. ">
 <polygon fill="none" stroke="black" points="0,-0.5 0,-19.5 113,-19.5 113,-0.5 0,-0.5"/>
-<text text-anchor="middle" x="56.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">MCBooster::Vector3R</text>
+<text text-anchor="middle" x="56.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">MCBooster::RandGen</text>
 </a>
 </g>
 </g>

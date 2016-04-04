@@ -152,6 +152,8 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ab5b671c57005fe9fc7962898bf5234f1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_m_c_booster.html#af0bc6d091a152257ed022e48f03b85ba">GLong_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_m_c_booster_1_1_phase_space.html#ab5b671c57005fe9fc7962898bf5234f1">GetNEvents</a> () const </td></tr>
 <tr class="memdesc:ab5b671c57005fe9fc7962898bf5234f1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the number of events.  <a href="#ab5b671c57005fe9fc7962898bf5234f1">More...</a><br /></td></tr>
 <tr class="separator:ab5b671c57005fe9fc7962898bf5234f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a82926e6df21bd5d73aa6d65c9deb0b71"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_m_c_booster.html#af0bc6d091a152257ed022e48f03b85ba">GLong_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_m_c_booster_1_1_phase_space.html#a82926e6df21bd5d73aa6d65c9deb0b71">GetNAccepted</a> () const </td></tr>
+<tr class="separator:a82926e6df21bd5d73aa6d65c9deb0b71"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a90ff4dfb19f529e23c85d738b8182232"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="namespace_m_c_booster.html#a96d37c37cdd8543e60dc1a153d580804">RealVector_d</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_m_c_booster_1_1_phase_space.html#a90ff4dfb19f529e23c85d738b8182232">GetWeights</a> () const </td></tr>
 <tr class="memdesc:a90ff4dfb19f529e23c85d738b8182232"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a device vector with the event weights.  <a href="#a90ff4dfb19f529e23c85d738b8182232">More...</a><br /></td></tr>
 <tr class="separator:a90ff4dfb19f529e23c85d738b8182232"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -170,6 +172,8 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aac16bc7cb45a941dd55fbb0c59f1713c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_m_c_booster_1_1_phase_space.html#aac16bc7cb45a941dd55fbb0c59f1713c">Export</a> (<a class="el" href="struct_m_c_booster_1_1_events.html">Events</a> *_Events)</td></tr>
 <tr class="memdesc:aac16bc7cb45a941dd55fbb0c59f1713c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Export the events and all related information to host.  <a href="#aac16bc7cb45a941dd55fbb0c59f1713c">More...</a><br /></td></tr>
 <tr class="separator:aac16bc7cb45a941dd55fbb0c59f1713c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a06901ccba8031a3220c46d7d50902577"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_m_c_booster_1_1_phase_space.html#a06901ccba8031a3220c46d7d50902577">ExportUnweighted</a> (<a class="el" href="struct_m_c_booster_1_1_events.html">Events</a> *_Events)</td></tr>
+<tr class="separator:a06901ccba8031a3220c46d7d50902577"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aba98bf5f6b770ae3516ab1fd04dd9ec9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_m_c_booster.html#aa602414b6da460ac5199bb1c2eaeaefc">GULong_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_m_c_booster_1_1_phase_space.html#aba98bf5f6b770ae3516ab1fd04dd9ec9">Unweight</a> ()</td></tr>
 <tr class="memdesc:aba98bf5f6b770ae3516ab1fd04dd9ec9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flag the accepted and rejected events.  <a href="#aba98bf5f6b770ae3516ab1fd04dd9ec9">More...</a><br /></td></tr>
 <tr class="separator:aba98bf5f6b770ae3516ab1fd04dd9ec9"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -208,7 +212,7 @@ Public Member Functions</h2></td></tr>
 <div class="line"> phsp.Export(GenEvents);</div>
 <div class="line"> ...</div>
 </div><!-- fragment --> 
-<p>Definition at line <a class="el" href="_generate_8h_source.html#l00162">162</a> of file <a class="el" href="_generate_8h_source.html">Generate.h</a>.</p>
+<p>Definition at line <a class="el" href="_generate_8h_source.html#l00163">163</a> of file <a class="el" href="_generate_8h_source.html">Generate.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a3324b4cef929a0d21e6479600b8bd744"></a>
 <div class="memitem">
@@ -253,7 +257,7 @@ Public Member Functions</h2></td></tr>
 <li>_NEvents: it is the number of events to be generated. </li>
 </ul>
 
-<p>Definition at line <a class="el" href="_generate_8h_source.html#l00171">171</a> of file <a class="el" href="_generate_8h_source.html">Generate.h</a>.</p>
+<p>Definition at line <a class="el" href="_generate_8h_source.html#l00172">172</a> of file <a class="el" href="_generate_8h_source.html">Generate.h</a>.</p>
 
 </div>
 </div>
@@ -279,7 +283,7 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 <p>The destructor explicitly frees all the resources owned by the class. </p>
 
-<p>Definition at line <a class="el" href="_generate_8h_source.html#l00206">206</a> of file <a class="el" href="_generate_8h_source.html">Generate.h</a>.</p>
+<p>Definition at line <a class="el" href="_generate_8h_source.html#l00208">208</a> of file <a class="el" href="_generate_8h_source.html">Generate.h</a>.</p>
 
 </div>
 </div>
@@ -306,7 +310,7 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_generate_8h_source.html#l00307">307</a> of file <a class="el" href="_generate_8h_source.html">Generate.h</a>.</p>
+<p>Definition at line <a class="el" href="_generate_8h_source.html#l00313">313</a> of file <a class="el" href="_generate_8h_source.html">Generate.h</a>.</p>
 
 </div>
 </div>
@@ -325,9 +329,30 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 <p>Export the events and all related information to an <a class="el" href="struct_m_c_booster_1_1_events.html" title="Events is a container struct to hold all the information corresponding the generated events...">Events</a> object properly initialized.</p>
 
-<p>Definition at line <a class="el" href="_generate_8h_source.html#l00373">373</a> of file <a class="el" href="_generate_8h_source.html">Generate.h</a>.</p>
+<p>Definition at line <a class="el" href="_generate_8h_source.html#l00460">460</a> of file <a class="el" href="_generate_8h_source.html">Generate.h</a>.</p>
 
-<p>References <a class="el" href="_generate_8h_source.html#l00075">CUDA_CHECK_RETURN</a>, <a class="el" href="_generate_8h_source.html#l00109">MCBooster::Events::fAccRejFlags</a>, <a class="el" href="_generate_8h_source.html#l00111">MCBooster::Events::fDaughters</a>, <a class="el" href="_generate_8h_source.html#l00108">MCBooster::Events::fMaxWeight</a>, and <a class="el" href="_generate_8h_source.html#l00110">MCBooster::Events::fWeights</a>.</p>
+<p>References <a class="el" href="_generate_8h_source.html#l00076">CUDA_CHECK_RETURN</a>, <a class="el" href="_generate_8h_source.html#l00110">MCBooster::Events::fAccRejFlags</a>, <a class="el" href="_generate_8h_source.html#l00112">MCBooster::Events::fDaughters</a>, <a class="el" href="_generate_8h_source.html#l00109">MCBooster::Events::fMaxWeight</a>, and <a class="el" href="_generate_8h_source.html#l00111">MCBooster::Events::fWeights</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a06901ccba8031a3220c46d7d50902577"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void MCBooster::PhaseSpace::ExportUnweighted </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_m_c_booster_1_1_events.html">Events</a> *&#160;</td>
+          <td class="paramname"><em>_Events</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Export the events and all related information to an <a class="el" href="struct_m_c_booster_1_1_events.html" title="Events is a container struct to hold all the information corresponding the generated events...">Events</a> object properly initialized.</p>
+
+<p>Definition at line <a class="el" href="_generate_8h_source.html#l00383">383</a> of file <a class="el" href="_generate_8h_source.html">Generate.h</a>.</p>
+
+<p>References <a class="el" href="_generate_8h_source.html#l00076">CUDA_CHECK_RETURN</a>, <a class="el" href="_generate_8h_source.html#l00110">MCBooster::Events::fAccRejFlags</a>, <a class="el" href="_generate_8h_source.html#l00112">MCBooster::Events::fDaughters</a>, <a class="el" href="_generate_8h_source.html#l00109">MCBooster::Events::fMaxWeight</a>, and <a class="el" href="_generate_8h_source.html#l00111">MCBooster::Events::fWeights</a>.</p>
 
 </div>
 </div>
@@ -353,7 +378,7 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 <p>Free resources owned in host and device side by the <a class="el" href="class_m_c_booster_1_1_phase_space.html" title="Implementation of the event generator. ">PhaseSpace</a> object. </p>
 
-<p>Definition at line <a class="el" href="_generate_8h_source.html#l00216">216</a> of file <a class="el" href="_generate_8h_source.html">Generate.h</a>.</p>
+<p>Definition at line <a class="el" href="_generate_8h_source.html#l00218">218</a> of file <a class="el" href="_generate_8h_source.html">Generate.h</a>.</p>
 
 </div>
 </div>
@@ -372,17 +397,16 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 <p>Run the generator and calculate the maximum weight. It takes as input the device vector with the four-vectors of the mother particle in any system of reference. The daughters will be generated in this system.</p>
 
-<p>Definition at line <a class="el" href="_generate_8h_source.html#l00577">577</a> of file <a class="el" href="_generate_8h_source.html">Generate.h</a>.</p>
+<p>Definition at line <a class="el" href="_generate_8h_source.html#l00664">664</a> of file <a class="el" href="_generate_8h_source.html">Generate.h</a>.</p>
 
-<p>References <a class="el" href="_generate_8h_source.html#l00089">MCBooster::time_diff()</a>, and <a class="el" href="_generate_8h_source.html#l00073">TIMER</a>.</p>
+<p>References <a class="el" href="_generate_8h_source.html#l00090">MCBooster::time_diff()</a>, and <a class="el" href="_generate_8h_source.html#l00074">TIMER</a>.</p>
 
 <p><div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-1-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-1-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="class_m_c_booster_1_1_phase_space_ab32ff8457a7393aa3d73cdcf8ad9b06c_cgraph.svg" width="376" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_m_c_booster_1_1_phase_space_ab32ff8457a7393aa3d73cdcf8ad9b06c_cgraph.svg" width="376" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </p>
 
@@ -403,17 +427,16 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 <p>Run the generator and calculate the maximum weight. It takes as input the fourvector of the mother particle in any system of reference. The daughters will be generated in this system.</p>
 
-<p>Definition at line <a class="el" href="_generate_8h_source.html#l00440">440</a> of file <a class="el" href="_generate_8h_source.html">Generate.h</a>.</p>
+<p>Definition at line <a class="el" href="_generate_8h_source.html#l00527">527</a> of file <a class="el" href="_generate_8h_source.html">Generate.h</a>.</p>
 
-<p>References <a class="el" href="_generate_8h_source.html#l00089">MCBooster::time_diff()</a>, and <a class="el" href="_generate_8h_source.html#l00073">TIMER</a>.</p>
+<p>References <a class="el" href="_generate_8h_source.html#l00090">MCBooster::time_diff()</a>, and <a class="el" href="_generate_8h_source.html#l00074">TIMER</a>.</p>
 
 <p><div id="dynsection-2" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-2-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-2-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-2-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="class_m_c_booster_1_1_phase_space_a1a9d49d3bd681d8dea0327f2eafd339b_cgraph.svg" width="376" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_m_c_booster_1_1_phase_space_a1a9d49d3bd681d8dea0327f2eafd339b_cgraph.svg" width="376" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </p>
 
@@ -442,7 +465,7 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 <p>It return a device vector of particles by reference. Is responsibility of the user modify or not the particles in the container. </p>
 
-<p>Definition at line <a class="el" href="_generate_8h_source.html#l00238">238</a> of file <a class="el" href="_generate_8h_source.html">Generate.h</a>.</p>
+<p>Definition at line <a class="el" href="_generate_8h_source.html#l00240">240</a> of file <a class="el" href="_generate_8h_source.html">Generate.h</a>.</p>
 
 </div>
 </div>
@@ -467,7 +490,7 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_generate_8h_source.html#l00265">265</a> of file <a class="el" href="_generate_8h_source.html">Generate.h</a>.</p>
+<p>Definition at line <a class="el" href="_generate_8h_source.html#l00271">271</a> of file <a class="el" href="_generate_8h_source.html">Generate.h</a>.</p>
 
 </div>
 </div>
@@ -492,7 +515,7 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_generate_8h_source.html#l00272">272</a> of file <a class="el" href="_generate_8h_source.html">Generate.h</a>.</p>
+<p>Definition at line <a class="el" href="_generate_8h_source.html#l00278">278</a> of file <a class="el" href="_generate_8h_source.html">Generate.h</a>.</p>
 
 </div>
 </div>
@@ -518,7 +541,32 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 <p>Larger the sample, more accurate is this number. </p>
 
-<p>Definition at line <a class="el" href="_generate_8h_source.html#l00287">287</a> of file <a class="el" href="_generate_8h_source.html">Generate.h</a>.</p>
+<p>Definition at line <a class="el" href="_generate_8h_source.html#l00293">293</a> of file <a class="el" href="_generate_8h_source.html">Generate.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a82926e6df21bd5d73aa6d65c9deb0b71"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_m_c_booster.html#af0bc6d091a152257ed022e48f03b85ba">GLong_t</a> MCBooster::PhaseSpace::GetNAccepted </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_generate_8h_source.html#l00257">257</a> of file <a class="el" href="_generate_8h_source.html">Generate.h</a>.</p>
 
 </div>
 </div>
@@ -543,7 +591,7 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_generate_8h_source.html#l00244">244</a> of file <a class="el" href="_generate_8h_source.html">Generate.h</a>.</p>
+<p>Definition at line <a class="el" href="_generate_8h_source.html#l00246">246</a> of file <a class="el" href="_generate_8h_source.html">Generate.h</a>.</p>
 
 </div>
 </div>
@@ -568,7 +616,7 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_generate_8h_source.html#l00251">251</a> of file <a class="el" href="_generate_8h_source.html">Generate.h</a>.</p>
+<p>Definition at line <a class="el" href="_generate_8h_source.html#l00253">253</a> of file <a class="el" href="_generate_8h_source.html">Generate.h</a>.</p>
 
 </div>
 </div>
@@ -593,7 +641,7 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_generate_8h_source.html#l00279">279</a> of file <a class="el" href="_generate_8h_source.html">Generate.h</a>.</p>
+<p>Definition at line <a class="el" href="_generate_8h_source.html#l00285">285</a> of file <a class="el" href="_generate_8h_source.html">Generate.h</a>.</p>
 
 </div>
 </div>
@@ -618,7 +666,7 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_generate_8h_source.html#l00258">258</a> of file <a class="el" href="_generate_8h_source.html">Generate.h</a>.</p>
+<p>Definition at line <a class="el" href="_generate_8h_source.html#l00264">264</a> of file <a class="el" href="_generate_8h_source.html">Generate.h</a>.</p>
 
 </div>
 </div>
@@ -660,7 +708,7 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_generate_8h_source.html#l00320">320</a> of file <a class="el" href="_generate_8h_source.html">Generate.h</a>.</p>
+<p>Definition at line <a class="el" href="_generate_8h_source.html#l00326">326</a> of file <a class="el" href="_generate_8h_source.html">Generate.h</a>.</p>
 
 </div>
 </div>
@@ -678,7 +726,7 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 <p>Flag the accepted and rejected events</p>
 
-<p>Definition at line <a class="el" href="_generate_8h_source.html#l00344">344</a> of file <a class="el" href="_generate_8h_source.html">Generate.h</a>.</p>
+<p>Definition at line <a class="el" href="_generate_8h_source.html#l00352">352</a> of file <a class="el" href="_generate_8h_source.html">Generate.h</a>.</p>
 
 <p>References <a class="el" href="_g_types_8h_source.html#l00061">MCBooster::kTrue</a>.</p>
 
@@ -693,7 +741,7 @@ Public Member Functions</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespace_m_c_booster.html">MCBooster</a></li><li class="navelem"><a class="el" href="class_m_c_booster_1_1_phase_space.html">PhaseSpace</a></li>
-    <li class="footer">Generated on Sat Apr 2 2016 02:10:21 for MCBooster by
+    <li class="footer">Generated on Tue Apr 5 2016 00:19:38 for MCBooster by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.10 </li>
   </ul>
