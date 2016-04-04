@@ -9,15 +9,25 @@ Table of Contents
 =================
 
   * [MCBooster](#mcbooster)
+
     * [What is it?](#what-is-it)
+
     * [Main features](#main-features)
+
     * [The Latest Version](#the-latest-version)
+
     * [Documentation](#documentation)
+
     * [Installation and requirements ](#installation-and-requirements-)
+
     * [Examples](#examples)
+
     * [Licensing](#licensing)
+
     * [Contact the developers](#contact-the-developers)
+
     * [Author](#author)
+
     * [Acknowledgement](#acknowledgement)
 
 What is it?
@@ -39,34 +49,34 @@ Main features
 
 Generates phase space Monte Carlo samples with up to nine particles in the final state, using very simple
 and intuitive interface. Example:
-```c++
-//generating 10M events of B0 -> J/psi K pi
-#include <mcbooster/GTypes.h>
-#include <mcbooster/Vector4R.h>
-#include <mcbooster/Generate.h>
- ...
-//setting the mother particle
-Vector4R B0(5.2795, 0.0, 0.0, 0.0);
- 
-//setting the masses of the daughter particles
-vector<GReal_t> masses;
-masses.push_back(3.096916); // J/psi
-masses.push_back(0.493677); // K
-masses.push_back(0.13957018); // pi
- 
-//generator ctor for 10M events
-PhaseSpace phsp(B0.mass(), massesB0, 10000000);
- 
-//run the generator
-phsp.Generate(B0);
- 
-//Unweight the events flags the accepted and rejected events
-phsp.Unweight();
- 
-//export events to the host (in case it is necessary)
-Events *GenEvents = new Events(masses.size(), 10000000);
-phsp.Export(GenEvents);
-...
+```
+	//generating 10M events of B0 -> J/psi K pi
+	#include <mcbooster/GTypes.h>
+	#include <mcbooster/Vector4R.h>
+	#include <mcbooster/Generate.h>
+	 ...
+	//setting the mother particle
+	Vector4R B0(5.2795, 0.0, 0.0, 0.0);
+	 
+	//setting the masses of the daughter particles
+	vector<GReal_t> masses;
+	masses.push_back(3.096916); // J/psi
+	masses.push_back(0.493677); // K
+	masses.push_back(0.13957018); // pi
+	 
+	//generator ctor for 10M events
+	PhaseSpace phsp(B0.mass(), massesB0, 10000000);
+	 
+	//run the generator
+	phsp.Generate(B0);
+	 
+	//Unweight the events flags the accepted and rejected events
+	phsp.Unweight();
+	 
+	//export events to the host (in case it is necessary)
+	Events *GenEvents = new Events(masses.size(), 10000000);
+	phsp.Export(GenEvents);
+	...
 ```
 Other key features are:
 
@@ -169,7 +179,7 @@ Here’s what you should do if you need help or would like to contribute:
 Author
 --------
 
-MCBooster was created and is mantained by [Antonio Augusto Alves Jr](@AAAlvesJr).
+MCBooster was created and is mantained by [Antonio Augusto Alves Jr](https://github.com/AAAlvesJr).
 
 Acknowledgement
 ---------------
