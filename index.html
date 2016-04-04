@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.10"/>
-<title>MCBooster: Main Page</title>
+<title>MCBooster: Documentation</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -100,15 +100,104 @@ $(document).ready(function(){initNavTree('index.html','');});
 
 <div class="header">
   <div class="headertitle">
-<div class="title">MCBooster Documentation</div>  </div>
+<div class="title">Documentation </div>  </div>
 </div><!--header-->
 <div class="contents">
-</div><!-- contents -->
+<div class="textblock"><h1>Table of Contents </h1>
+<p><a href="#mcbooster">MCBooster</a> <a href="#what-is-it">What is it?</a> <a href="#main-features">Main features</a> <a href="#the-latest-version">The Latest Version</a> <a href="#documentation">Documentation</a> <a href="#installation-and-requirements-">Installation and requirements</a> <a href="#examples">Examples</a> <a href="#licensing">Licensing</a> <a href="#contact-the-developers">Contact the developers</a> <a href="#author">Author</a> <a href="#acknowledgement">Acknowledgement</a></p>
+<h2>What is it? </h2>
+<p><a class="el" href="namespace_m_c_booster.html">MCBooster</a> is an header only library designed for the fast generation of phase space events. The library makes use of Thrust and can deploy OpenMP threads, CUDA and Xeon Phi cores. It is focused on performance and precision.</p>
+<p>The libray core algorithm follow as close as it is possible the implementation of the class <a href="https://root.cern.ch/doc/master/TGenPhaseSpace_8cxx.html">TGenPhaseSpace</a> from <a href="https://root.cern.ch/">ROOT framwork</a>, which is based on the <a href="http://cernlib.web.cern.ch/cernlib/mc/genbod.html">GENBOD function (W515 from CERNLIB)</a> using the Raubold and Lynch method as described in</p>
+<p><a href="https://cds.cern.ch/record/275743/files/CERN-68-15.pdf">_F. James, Monte Carlo Phase Space, CERN 68-15 (1968)_</a>.</p>
+<h2>Main features </h2>
+<p>Generates phase space Monte Carlo samples with up to nine particles in the final state, using very simple and intuitive interface. Example: </p><div class="fragment"><div class="line"><span class="comment">//generating 10M events of B0 -&gt; J/psi K pi</span></div>
+<div class="line"><span class="preprocessor">#include &lt;<a class="code" href="_g_types_8h.html">mcbooster/GTypes.h</a>&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;<a class="code" href="_vector4_r_8h.html">mcbooster/Vector4R.h</a>&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;<a class="code" href="_generate_8h.html">mcbooster/Generate.h</a>&gt;</span></div>
+<div class="line"> ...</div>
+<div class="line"><span class="comment">//setting the mother particle</span></div>
+<div class="line">Vector4R B0(5.2795, 0.0, 0.0, 0.0);</div>
+<div class="line"></div>
+<div class="line"><span class="comment">//setting the masses of the daughter particles</span></div>
+<div class="line">vector&lt;GReal_t&gt; masses;</div>
+<div class="line">masses.push_back(3.096916); <span class="comment">// J/psi</span></div>
+<div class="line">masses.push_back(0.493677); <span class="comment">// K</span></div>
+<div class="line">masses.push_back(0.13957018); <span class="comment">// pi</span></div>
+<div class="line"></div>
+<div class="line"><span class="comment">//generator ctor for 10M events</span></div>
+<div class="line">PhaseSpace phsp(B0.mass(), massesB0, 10000000);</div>
+<div class="line"></div>
+<div class="line"><span class="comment">//run the generator</span></div>
+<div class="line">phsp.Generate(B0);</div>
+<div class="line"></div>
+<div class="line"><span class="comment">//Unweight the events flags the accepted and rejected events</span></div>
+<div class="line">phsp.Unweight();</div>
+<div class="line"></div>
+<div class="line"><span class="comment">//export events to the host (in case it is necessary)</span></div>
+<div class="line">Events *GenEvents = <span class="keyword">new</span> Events(masses.size(), 10000000);</div>
+<div class="line">phsp.Export(GenEvents);</div>
+<div class="line">...</div>
+</div><!-- fragment --><p> Other key features are:</p>
+<ol type="1">
+<li>Decays can be generated with mother particles are rest or with a definite four-vector. this feature allows the generation of sequential decays.</li>
+<li>Generates weighted and "unweighted" samples simultaneously.</li>
+<li>Allows the fast parallel evaluation of arbitrary functions taking as argument up to ten particles as input.</li>
+<li>Allows the fast parallel evaluation of arrays of variables simultaneously.</li>
+</ol>
+<p><a class="el" href="namespace_m_c_booster.html">MCBooster</a> also provides a bunch of custom types, containers and an increasing number of algorithms to maximaze performance, avoid unecessary usage of memory and grant flexibility and protability between host and device calculations and deployment scenarios.</p>
+<p>Just changing .cu to .cpp in any source code writen only using the provided cosntructs is enough to compile your application for OpenMP using GCC in a machine without a NVIDIA GPU installed.</p>
+<p>Many other possibilities and functionaties, bounded only by the creativity of the users.</p>
+<h2>The Latest Version </h2>
+<p>The latest version can be found on the <a href="https://github.com/MultithreadCorner/MCBooster/releases">project relases page</a>.</p>
+<h2>Documentation </h2>
+<p>The complete and updated <a href="http://www.doxygen.org/">Doxygen</a> source code documentation of this release is available in HTML format on the <a href="http://multithreadcorner.github.io/MCBooster/">reference manual</a> webpage. Users can also browse the documentation by class, file or name using the following links:</p>
+<p>1.<a href="http://multithreadcorner.github.io/MCBooster/classes.html">classes</a></p>
+<p>2.<a href="http://multithreadcorner.github.io/MCBooster/files.html">files</a></p>
+<p>3.<a href="http://multithreadcorner.github.io/MCBooster/namespacemembers.html">names</a></p>
+<h2>Installation and requirements </h2>
+<p><a class="el" href="namespace_m_c_booster.html">MCBooster</a> is a header only library, so no build process is necessary to install it. Just place the <code>mcbooter</code> folder and its contents where your system can find it. The library run on Linux systems and requires C++11 and the <a href="https://thrust.github.io/">Thrust library</a>. Some examples demonstrating the basic features of the library are included in the <code>src</code> folder. These code samples require <a href="https://root.cern.ch/">ROOT</a> and <a href="http://tclap.sourceforge.net/">TCLAP</a> library. CUDA based projects will require a local installation of <a href="https://developer.nvidia.com/cuda-toolkit">CUDA Tookit</a> with version 6.5 or higher. Alternatively, projects the targeting <a href="http://openmp.org/wp/">OpenMP</a> backend can be compiled with either nvcc or gcc. The CUDA runtime is not required to use OpemMP with gcc.</p>
+<h2>Examples </h2>
+<p>Some example code samples demonstrating the basic usage of the library are stored in the src directory, in the project source tree. These samples can be built using <a href="https://cmake.org/">CMAKE</a> according the following instructions:</p>
+<ol type="1">
+<li>clone the git repository: <code>git clone <a href="https://github.com/MultithreadCorner/MCBooster.git">https://github.com/MultithreadCorner/MCBooster.git</a></code></li>
+<li>go to <a class="el" href="namespace_m_c_booster.html">MCBooster</a> directory: <code>cd <a class="el" href="namespace_m_c_booster.html">MCBooster</a></code></li>
+<li>create a build directory: <code>mkdir build</code></li>
+<li>go to build directory: <code>cd build</code></li>
+</ol>
+<ol type="1">
+<li><code>cmake ../</code></li>
+<li><code>make</code></li>
+</ol>
+<p>Users with root privilegies can do <code>make install</code> and get the targets installed into system-install-dir/bin (usually /usr/local. <b>Notice the project installation path is printed out in the setp 4</b>). Users without root privileges can point the installation path to a different location cmake <code>-DCMAKE_INSTALL_PREFIX=&lt;user-path&gt;/ ../</code>.</p>
+<p>The examples are named according to the convention <code>MCBooster_Example_&lt;BACKEND AND COMPILER&gt;_&lt;EXAMPLE NAME&gt;</code>. To run an example do <code>./example-name</code>. The examples are described below:</p>
+<ol type="1">
+<li><b>B2KPiJpsi</b> : Generates a sample of B0 -&gt; Jpsi K pi, with J/psi -&gt; mu+ mu- and calculates in parallel, for each event, the variables: M(K,pi), the Kpi invariant mass. M(J/psi,pi), the J/psipi invariant mass. cos theta(K), the helicity angle of the Kpi. cos theta(mu), the helicity angle of the J/psi phi, the angle between the decay planes</li>
+</ol>
+<p>The program print some events and timing information to sdtout and plotsthe distributions of the above variables plus the B0 -&gt; J/psiK pi Dalitz plot.</p>
+<ol type="1">
+<li><b>GenerateSample</b> : Takes arguments from the command line, generates a sample and save it into a ROOT TTree.</li>
+<li><b>PerformanceTest</b>: Meausure the time to generate and export samples in function of the number of events and number of particles.</li>
+</ol>
+<h2>Licensing </h2>
+<p><a class="el" href="namespace_m_c_booster.html">MCBooster</a> is released under the <a href="http://www.gnu.org/licenses/gpl-3.0.en.html">GNU General Public License version 3</a>. Please see the file called <a href="https://github.com/MultithreadCorner/MCBooster/blob/master/COPYING">COPYING</a>.</p>
+<h2>Contact the developers </h2>
+<p>Here’s what you should do if you need help or would like to contribute:</p>
+<ol type="1">
+<li>If you need help or would like to ask a general question, subscribe and use <a href="https://groups.google.com/d/forum/mcbooster">https://groups.google.com/d/forum/mcbooster</a>.</li>
+<li>If you found a bug, use GitHub issues.</li>
+<li>If you have an idea, use GitHub issues.</li>
+<li>If you want to contribute, submit a pull request.</li>
+</ol>
+<h2>Author </h2>
+<p><a class="el" href="namespace_m_c_booster.html">MCBooster</a> was created and is mantained by <a href="https://github.com/AAAlvesJr">Antonio Augusto Alves Jr</a>.</p>
+<h2>Acknowledgement </h2>
+<p><a class="el" href="namespace_m_c_booster.html">MCBooster</a>'s development has been supported by the <a href="http://nsf.gov/index.jsp">National Science Foundation</a> under grant number <a href="http://nsf.gov/awardsearch/showAward?AWD_ID=1414736">PHY-1414736</a>. Any opinions, findings, and conclusions or recommendations expressed in this material are those of the developers and do not necessarily reflect the views of the National Science Foundation. </p>
+</div></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Tue Apr 5 2016 00:41:07 for MCBooster by
+    <li class="footer">Generated on Tue Apr 5 2016 01:02:05 for MCBooster by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.10 </li>
   </ul>

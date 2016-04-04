@@ -1,6 +1,7 @@
 var NAVTREE =
 [
   [ "MCBooster", "index.html", [
+    [ "Documentation", "index.html", null ],
     [ "Namespaces", null, [
       [ "Namespace List", "namespaces.html", "namespaces" ],
       [ "Namespace Members", "namespacemembers.html", [
@@ -35,7 +36,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "_calculate_8h.html",
-"struct_m_c_booster_1_1_calculate2.html#a734bb14cfa5c2a931a4456dd1ae5f386"
+"struct_m_c_booster_1_1_calculate2.html#a6f9cda434fefada96cdf132ddb6b1c2d"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
