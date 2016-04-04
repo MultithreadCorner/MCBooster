@@ -49,6 +49,7 @@ Main features
 
 Generates phase space Monte Carlo samples with up to nine particles in the final state, using very simple
 and intuitive interface. Example:
+
 ```
 	//generating 10M events of B0 -> J/psi K pi
 	#include <mcbooster/GTypes.h>
@@ -78,6 +79,7 @@ and intuitive interface. Example:
 	phsp.Export(GenEvents);
 	...
 ```
+
 Other key features are:
 
 1. Decays can be generated with mother particles are rest or with a definite four-vector.
