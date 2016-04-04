@@ -33,14 +33,14 @@ Examples
 Some example code samples demonstrating the basic usage of the library are stored in the src directory. 
 These samples can be built using [CMAKE](https://cmake.org/) according the following instructions:
 
-1. clone the git repository: `git clone https://github.com/MultithreadCorner/MCBooster.git`
-2. go to MCBooster directory: `cd MCBooster`
-3. create a build directory: `mkdir build` 
-4. go to build directory: `cd build`
-4. `cmake ../`
-5. `make`
+1. clone the git repository: __`git clone https://github.com/MultithreadCorner/MCBooster.git`__
+2. go to MCBooster directory: __`cd MCBooster`__
+3. create a build directory: __`mkdir build`__
+4. go to build directory: __`cd build`__
+4. __`cmake ../`__
+5. __`make`__
 
-Users with root privilegies can do `make install` and get the targets installed into system-install-dir/bin (usually /usr/local. __Notice the project installation path is printed out in the setp 4__). Users without root privileges can point the installation path to a different location doing `cmake -DCMAKE_INSTALL_PREFIX=<user-path>/ ../`.
+Users with root privilegies can do `make install` and get the targets installed into system-install-dir/bin (usually /usr/local. __Notice that the project installation path is printed out in the setp 4__). Users without root privileges can point the installation path to a different location doing __`cmake -DCMAKE_INSTALL_PREFIX=<user-path>/ ../`__.
 To run an example do ./example-name
 
 Installation and requirements 
