@@ -50,8 +50,8 @@ option(BUILD_DOCUMENTATION "Create and install the HTML based API documentation 
 #options to gcc
 include(CheckCXXCompilerFlag)
 CHECK_CXX_COMPILER_FLAG("-std=c++11" COMPILER_SUPPORTS_CXX11)
-if(COMPILER_SUPPORTS_CXX11)
- message(STATUS "The compiler ${CMAKE_CXX_COMPILER} has no C++11 support. Please use a different C++ compiler.")
+if(NOT COMPILER_SUPPORTS_CXX11)
+ message(FATAL "The compiler ${CMAKE_CXX_COMPILER} has no C++11 support. Please use a different C++ compiler.")
 endif()
 
 #options to gcc
@@ -72,7 +72,9 @@ if(CUDA_FOUND)
 	# Detect CUDA architecture and get best NVCC flags
 	
 	INCLUDE(${CMAKE_CURRENT_SOURCE_DIR}/cmake/FindCudaArch.cmake)
+	
 	SELECT_NVCC_ARCH_FLAGS(NVCC_FLAGS_EXTRA)
+	
 	LIST(APPEND CUDA_NVCC_FLAGS ${NVCC_FLAGS_EXTRA})
 	#hack for gcc 5.x.x
 	if(CMAKE_CXX_COMPILER_VERSION VERSION_GREATER 4.9)
@@ -80,7 +82,7 @@ if(CUDA_FOUND)
     	endif()
 endif(CUDA_FOUND)
 
-if((CUDA_FOUND) AND (CUDA_GPU_DETECT_OUTPUT))
+if( CUDA_FOUND )
 
 	SET(BUILD_CUDA_TARGETS  ON)
 

@@ -91,11 +91,11 @@ GInt_t main(int argv, char** argc)
 
 	try {
 
-		TCLAP::CmdLine cmd("Command line arguments for PerformanceTest", ' ', "0.9");
+		TCLAP::CmdLine cmd("Command line arguments for GenerateSample", '=');
 
-		TCLAP::ValueArg<GULong_t> eArg("e", "events",
+		TCLAP::ValueArg<GULong_t> eArg("n", "number-of-events",
 				"Number of events",
-				false, 1e6, "long");
+				true, 1e6, "long");
 		cmd.add(eArg);
 
 
