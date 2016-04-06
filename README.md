@@ -55,7 +55,7 @@ PhaseSpace phsp(B0.mass(), massesB0, 10000000);
 //run the generator
 phsp.Generate(B0);
  
-//Unweight the events flags the accepted and rejected events
+//Unweight the events flagging the accepted and rejected ones
 phsp.Unweight();
  
 //export events to the host (in case it is necessary)
