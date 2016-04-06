@@ -164,7 +164,7 @@ Here’s what you should do if you need help or would like to contribute:
 Author
 --------
 
-MCBooster was created and is mantained by [Antonio Augusto Alves Jr](@AAAlvesJr).
+MCBooster was created and is mantained by [Antonio Augusto Alves Jr](https://github.com/AAAlvesJr).
 
 Acknowledgement
 ---------------
