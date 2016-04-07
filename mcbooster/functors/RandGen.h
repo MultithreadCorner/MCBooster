@@ -70,7 +70,7 @@ struct RandGen
 	__host__ __device__ void operator ()(GLong_t idx)
 	{
 		//GUInt_t seed = hash(idx);
-		thrust::ranlux24 randEng;
+		thrust::random::ranlux24_base randEng;
 		thrust::uniform_real_distribution<float> uniDist(0.0, 1.0);
 
 		for (GInt_t i = 0; i < (3 * fNDaughters - 2); i++)
