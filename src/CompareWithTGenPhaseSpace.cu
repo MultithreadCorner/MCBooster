@@ -287,8 +287,7 @@ GInt_t main(int argv, char** argc)
 			TCanvas *c = new TCanvas( H1D[index]->GetName(), H1D[index]->GetName(), 600, 500 );
 
 			H1D[index]->Draw("HIST");
-			c->Print( TString::Format("./histo_%d%d.pdf", names_temp[i+1].c_str(), names_temp[j+1].c_str() ) );
-			c->Print( TString::Format("./histo_%d%d.pdf", names_temp[i+1].c_str(), names_temp[j+1].c_str() ) );
+			c->Print( TString::Format("./histo_%d%d.pdf", i, j ) );
 
 		}
 

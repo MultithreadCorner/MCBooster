@@ -118,6 +118,16 @@ if(BUILD_CUDA_TARGETS)
     ${ROOT_LIBRARIES}
     rt
     )
+    
+    cuda_add_executable(MCBooster_Example_OpenMP_CompareWithRoot
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/CompareWithTGenPhaseSpace.cu
+    OPTIONS -DTHRUST_DEVICE_SYSTEM=THRUST_DEVICE_SYSTEM_OMP
+    )
+    
+    target_link_libraries(MCBooster_Example_OpenMP_CompareWithRoot
+    ${ROOT_LIBRARIES}
+    rt
+    )
 
 
     cuda_add_executable(MCBooster_Example_CUDA_GenerateSample

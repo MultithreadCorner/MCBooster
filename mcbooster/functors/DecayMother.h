@@ -202,11 +202,11 @@ struct DecayMother
 					-pd[i - 1], 0.0);
 
 			GReal_t cZ = 2
-					* fRandNumbers[i - 1 + fNDaughters - 1 + evt * fNDaughters]
+					* fRandNumbers[i + fNDaughters - 1 + evt * fNDaughters]
 					- 1;
 			 GReal_t sZ = sqrt(1 - cZ * cZ);
 			 GReal_t angY = 2 * PI
-					* fRandNumbers[i + fNDaughters - 1 + evt * fNDaughters];
+					* fRandNumbers[i +1+ fNDaughters - 1 + evt * fNDaughters];
 			 GReal_t cY = cos(angY);
 			 GReal_t sY = sin(angY);
 			for (size_t j = 0; j <= i; j++)

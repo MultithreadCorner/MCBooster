@@ -538,12 +538,24 @@ void PhaseSpace::Generate(const Vector4R fMother) {
 	timespec time_rnd_start, time_rnd_end;
 	clock_gettime(TIMER, &time_rnd_start);
 
-	mc_device_vector<GLong_t> Evt(fNEvents);
+	mc_device_vector<GInt_t> Evt(  fNEvents );
 	thrust::sequence(Evt.begin(), Evt.end());
 
+	// a sequence counting up from 0
+	 thrust::counting_iterator<int> index_sequence_begin(0);
+
+
+
+
+
+	/*
 	thrust::for_each(Evt.begin(), Evt.end(),
 			RandGen(fNDaughters,
 					(thrust::raw_pointer_cast(fRandNumbers.data()))));
+					*/
+
+	thrust::transform( index_sequence_begin, index_sequence_begin + fRandNumbers.size() ,
+			fRandNumbers.begin(), RandGen2() );
 
 	clock_gettime(TIMER, &time_rnd_end);
 
