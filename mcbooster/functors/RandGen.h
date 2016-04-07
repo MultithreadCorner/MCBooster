@@ -69,14 +69,15 @@ struct RandGen
 	 */
 	__host__ __device__ void operator ()(GLong_t idx)
 	{
-		GUInt_t seed = hash(idx);
-		thrust::default_random_engine randEng(seed);
-		thrust::uniform_real_distribution<GReal_t> uniDist(0.0, 1.0);
+		//GUInt_t seed = hash(idx);
+		thrust::ranlux24 randEng;
+		thrust::uniform_real_distribution<float> uniDist(0.0, 1.0);
 
 		for (GInt_t i = 0; i < (3 * fNDaughters - 2); i++)
 		{
 
 			GInt_t ridx = i + idx * (3 * fNDaughters - 2);
+			randEng.discard(ridx);
 			fRndNumbers[ridx] = uniDist(randEng);
 
 		}

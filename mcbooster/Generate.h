@@ -64,6 +64,7 @@
 #include <thrust/extrema.h>
 #include <thrust/count.h>
 #include <thrust/fill.h>
+#include <thrust/sort.h>
 
 #if !(THRUST_DEVICE_SYSTEM==THRUST_DEVICE_BACKEND_OMP || THRUST_DEVICE_SYSTEM==THRUST_DEVICE_BACKEND_TBB)
 #include <thrust/system/cuda/execution_policy.h>
@@ -548,6 +549,8 @@ void PhaseSpace::Generate(const Vector4R fMother) {
 
 	RND_Time = ((GReal_t) (time_diff(time_rnd_start, time_rnd_end).tv_sec
 			+ time_diff(time_rnd_start, time_rnd_end).tv_nsec * 1.0e-9));
+
+
 
 	//Vai!!!
 

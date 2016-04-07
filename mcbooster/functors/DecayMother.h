@@ -136,20 +136,30 @@ struct DecayMother
 	__host__      __device__ GReal_t process(const GInt_t evt, Vector4R** daugters)
 	{
 
-		 GReal_t rno[kMAXP];
+		GReal_t rno[kMAXP];
 		rno[0] = 0.0;
+		rno[fNDaughters - 1] = 1.0;
 
 		if (fNDaughters > 2)
 		{
 #pragma unroll 9
-			for (size_t n = 1; n < fNDaughters - 1; n++)
+			for (GInt_t n = 1; n < fNDaughters - 1; n++)
 			{
 				rno[n] = fRandNumbers[n - 1 + evt * fNDaughters];
 
 			}
-			bbsort(&rno[1], fNDaughters - 2);
+
+			bbsort(&rno[0], fNDaughters );
+			/*
+			for (GInt_t n = 0; n < fNDaughters ; n++)
+			{
+				printf("%d %d  %f \n", evt, n, rno[n]);
+
+			}
+			*/
+
 		}
-		rno[fNDaughters - 1] = 1;
+
 
 		 GReal_t invMas[kMAXP], sum = 0.0;
 
@@ -180,7 +190,7 @@ struct DecayMother
 		//
 
 		//Vector4R* __restrict__ daugters= &particles;
-		daugters[0]->set(sqrt(pd[0] * pd[0] + fMasses[0] * fMasses[0]), 0.0,
+		daugters[0]->set(sqrt((GReal_t) pd[0] * pd[0] + fMasses[0] * fMasses[0]), 0.0,
 				pd[0], 0.0);
 
 #pragma unroll 9

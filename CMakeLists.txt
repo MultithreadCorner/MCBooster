@@ -109,6 +109,16 @@ MESSAGE(STATUS "Install diretory: " ${CMAKE_INSTALL_PREFIX}  )
 if(BUILD_CUDA_TARGETS)
 
 #make cuda targets
+ 
+    cuda_add_executable(MCBooster_Example_CUDA_CompareWithRoot
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/CompareWithTGenPhaseSpace.cu
+    )
+    
+    target_link_libraries(MCBooster_Example_CUDA_CompareWithRoot
+    ${ROOT_LIBRARIES}
+    rt
+    )
+
 
     cuda_add_executable(MCBooster_Example_CUDA_GenerateSample
 	${CMAKE_CURRENT_SOURCE_DIR}/src/GenerateSample.cu
