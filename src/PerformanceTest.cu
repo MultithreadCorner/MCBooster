@@ -164,7 +164,7 @@ GInt_t main(int argv, char** argc)
 
 	GDouble_t _time[4];
 
-	for(GInt_t i=1;i<40;i++)
+	for(GInt_t i=1;i<100;i++)
 	{
 		GULong_t nevt = i*500000;
 

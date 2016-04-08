@@ -48,6 +48,7 @@
 #include "TString.h"
 #include "TFile.h"
 #include "TLorentzVector.h"
+#include "TGenPhaseSpace.h"
 #include "TString.h"
 #include "TH1D.h"
 #include "TCanvas.h"
@@ -222,6 +223,7 @@ GInt_t main(int argv, char** argc)
 	GInt_t number_of_combinations = factorial(masses.size())/( 2*factorial(masses.size()-2) );
 
 	map<GInt_t, TH1D*> H1D;
+	map<GInt_t, TH1D*> H1D_ROOT;
 
 	map<GInt_t, GReal_t> min_histo_limits;
 	map<GInt_t, GReal_t> max_histo_limits;
@@ -247,13 +249,17 @@ GInt_t main(int argv, char** argc)
 			cout << "Adding ["<< index  << "] ---> M( "<< names_temp[j+1] << ", " <<  names_temp[i+1] << ")" << endl;
 			cout << "Histogram "<< name.Data() << " min " << min << " max " << max << endl;
 			TH1D *h = new TH1D(name.Data(), TString::Format(";%s [GeV/c^{2}];Yield", name.Data()).Data(), 100, min , max);
+			TH1D *h2 = new TH1D(TString::Format("%s_ROOT",name.Data()).Data(), TString::Format(";%s [GeV/c^{2}];Yield", name.Data()).Data(), 100, min , max);
+h->Sumw2();
+h2->Sumw2();
 			H1D.insert(std::make_pair(index, h));
+			H1D_ROOT.insert(std::make_pair(index, h2));
 
 		}
 	}
 
 
-
+   //MCBooster
 	for(GInt_t event=0; event<nevents; event++ )
 	{
 		for(GInt_t i=0; i<masses.size(); i++)
@@ -276,7 +282,40 @@ GInt_t main(int argv, char** argc)
 
 	}
 
+	//ROOT
+	TGenPhaseSpace phsp_root;
+	TLorentzVector mother_root(0.0, 0.0, 0.0, mother_mass);
+	phsp_root.SetDecay(mother_root, masses.size(), masses.data());
 
+	clock_gettime(CLOCK_REALTIME, &time1);
+	for(GInt_t event=0; event<nevents; event++ )
+		{
+		Double_t weight = phsp_root.Generate();
+		for(GInt_t i=0; i<masses.size(); i++)
+				{
+					for(GInt_t j=0; j<masses.size(); j++)
+					{
+						if(j>=i) continue;
+
+						GInt_t index =  i+j*masses.size();
+
+						TLorentzVector pr= 	*phsp_root.GetDecay(i) + *phsp_root.GetDecay(j);
+						H1D_ROOT[index]->Fill( pr.M(), weight  );
+
+					}
+				}
+
+
+
+		}
+	clock_gettime(CLOCK_REALTIME, &time2);
+	GReal_t root_time_used = ((GReal_t) (time_diff(time1, time2).tv_sec
+				+ time_diff(time1, time2).tv_nsec * 1.0e-9));
+
+	cout << "-----------------------------------------------------"<< endl;
+	cout << "----------------------- Timing ----------------------"<< endl;
+
+	cout << "Event generation in ROOT: " << root_time_used << endl;
 
 	for(GInt_t i=0; i<masses.size(); i++)
 	{
@@ -286,7 +325,13 @@ GInt_t main(int argv, char** argc)
 			GInt_t index =  i+j*masses.size();
 			TCanvas *c = new TCanvas( H1D[index]->GetName(), H1D[index]->GetName(), 600, 500 );
 
-			H1D[index]->Draw("HIST");
+			H1D[index]->Draw("e0");
+			H1D[index]->SetMarkerColor(kBlue);
+			H1D[index]->SetMarkerSize(0.5);
+			H1D[index]->SetMarkerStyle(8);
+			H1D_ROOT[index]->Draw("HISTsame");
+			H1D_ROOT[index]->SetLineColor(kRed);
+
 			c->Print( TString::Format("./histo_%d%d.pdf", i, j ) );
 
 		}

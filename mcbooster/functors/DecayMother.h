@@ -34,6 +34,7 @@
 #include <mcbooster/Vector4R.h>
 #include <thrust/tuple.h>
 #include <thrust/iterator/zip_iterator.h>
+#include <thrust/random.h>
 
 using namespace std;
 
@@ -42,7 +43,7 @@ namespace MCBooster
 
 struct DecayMother
 {
-
+    const GInt_t fSeed;
 	const GInt_t fNDaughters;
 	GReal_t fTeCmTm;
 	GReal_t fWtMax;
@@ -50,17 +51,16 @@ struct DecayMother
 	GReal_t fBeta1;
 	GReal_t fBeta2;
 
-	const GReal_t* __restrict__ fRandNumbers;
+
 	const GReal_t* __restrict__ fMasses;
 
 	//constructor
 	DecayMother(const Vector4R mother,
 			const mc_device_vector<GReal_t>& _masses,
-			const GInt_t _ndaughters,
-			const mc_device_vector<GReal_t>& _rnd ) :
-			fRandNumbers(thrust::raw_pointer_cast(_rnd.data())),
+			const GInt_t _ndaughters, const GInt_t _seed):
 			fMasses(thrust::raw_pointer_cast(_masses.data())),
-			fNDaughters(_ndaughters)
+			fNDaughters(_ndaughters),
+			fSeed(_seed)
 
 	{
 
@@ -133,8 +133,22 @@ struct DecayMother
 
 	}
 
+	__host__      __device__ GUInt_t hash(GUInt_t a)
+		{
+			a = (a + 0x7ed55d16) + (a << 12);
+			a = (a ^ 0xc761c23c) ^ (a >> 19);
+			a = (a + 0x165667b1) + (a << 5);
+			a = (a + 0xd3a2646c) ^ (a << 9);
+			a = (a + 0xfd7046c5) + (a << 3);
+			a = (a ^ 0xb55a4f09) ^ (a >> 16);
+			return a;
+		}
+
 	__host__      __device__ GReal_t process(const GInt_t evt, Vector4R** daugters)
 	{
+
+		thrust::random::default_random_engine randEng( hash(evt)*fSeed);
+		thrust::uniform_real_distribution<GReal_t> uniDist(0.0, 1.0);
 
 		GReal_t rno[kMAXP];
 		rno[0] = 0.0;
@@ -142,28 +156,21 @@ struct DecayMother
 
 		if (fNDaughters > 2)
 		{
-#pragma unroll 9
+			#pragma unroll 9
 			for (GInt_t n = 1; n < fNDaughters - 1; n++)
 			{
-				rno[n] = fRandNumbers[n - 1 + evt * fNDaughters];
+				rno[n] =  uniDist(randEng) ;
 
 			}
 
-			bbsort(&rno[0], fNDaughters );
-			/*
-			for (GInt_t n = 0; n < fNDaughters ; n++)
-			{
-				printf("%d %d  %f \n", evt, n, rno[n]);
-
-			}
-			*/
+			bbsort(&rno[1], fNDaughters -2);
 
 		}
 
 
 		 GReal_t invMas[kMAXP], sum = 0.0;
 
-#pragma unroll 9
+		#pragma unroll 9
 		for (size_t n = 0; n < fNDaughters; n++)
 		{
 			sum += fMasses[n];
@@ -178,7 +185,7 @@ struct DecayMother
 
 		 GReal_t pd[kMAXP];
 
-#pragma unroll 9
+		#pragma unroll 9
 		for (size_t n = 0; n < fNDaughters - 1; n++)
 		{
 			pd[n] = pdk(invMas[n + 1], invMas[n], fMasses[n + 1]);
@@ -189,11 +196,10 @@ struct DecayMother
 		//-----> complete specification of event (Raubold-Lynch method)
 		//
 
-		//Vector4R* __restrict__ daugters= &particles;
 		daugters[0]->set(sqrt((GReal_t) pd[0] * pd[0] + fMasses[0] * fMasses[0]), 0.0,
 				pd[0], 0.0);
 
-#pragma unroll 9
+		#pragma unroll 9
 		for (size_t i = 1; i < fNDaughters; i++)
 		{
 
@@ -201,12 +207,9 @@ struct DecayMother
 					sqrt(pd[i - 1] * pd[i - 1] + fMasses[i] * fMasses[i]), 0.0,
 					-pd[i - 1], 0.0);
 
-			GReal_t cZ = 2
-					* fRandNumbers[i + fNDaughters - 1 + evt * fNDaughters]
-					- 1;
+			GReal_t cZ = 2 * uniDist(randEng) -1 ;
 			 GReal_t sZ = sqrt(1 - cZ * cZ);
-			 GReal_t angY = 2 * PI
-					* fRandNumbers[i +1+ fNDaughters - 1 + evt * fNDaughters];
+			 GReal_t angY = 2 * PI* uniDist(randEng);
 			 GReal_t cY = cos(angY);
 			 GReal_t sY = sin(angY);
 			for (size_t j = 0; j <= i; j++)
@@ -238,7 +241,7 @@ struct DecayMother
 		//
 		//---> final boost of all particles to the mother's frame
 		//
-#pragma unroll 9
+		#pragma unroll 9
 		for (size_t n = 0; n < fNDaughters; n++)
 		{
 

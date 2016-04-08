@@ -65,6 +65,7 @@
 #include <thrust/count.h>
 #include <thrust/fill.h>
 #include <thrust/sort.h>
+#include <thrust/iterator/counting_iterator.h>
 
 #if !(THRUST_DEVICE_SYSTEM==THRUST_DEVICE_BACKEND_OMP || THRUST_DEVICE_SYSTEM==THRUST_DEVICE_BACKEND_TBB)
 #include <thrust/system/cuda/execution_policy.h>
@@ -172,7 +173,8 @@ public:
 	 */
 	PhaseSpace(GReal_t _MotherMass, vector<GReal_t> _Masses, GLong_t _NEvents) :
 			fNDaughters(_Masses.size()), fNEvents(_NEvents),
-			fRandNumbers((3 * _Masses.size() - 2) * _NEvents, 0.0), fMaxWeight(0.0),
+			fSeed(1),
+			fMaxWeight(0.0),
 			RND_Time(0.0), EVT_Time(0.0), EXP_Time(0.0), fNAccepted(0)
         {
 
@@ -225,8 +227,8 @@ public:
 
 		fWeights.clear();
 		fWeights.shrink_to_fit();
-		fRandNumbers.clear();
-		fRandNumbers.shrink_to_fit();
+		//fRandNumbers.clear();
+		//fRandNumbers.shrink_to_fit();
 		fAccRejFlags.clear();
 		fAccRejFlags.shrink_to_fit();
 	}
@@ -295,6 +297,14 @@ public:
 		return fMaxWeight;
 	}
 
+	inline GInt_t GetSeed() const	{
+			return fSeed;
+		}
+
+	inline void SetSeed(GInt_t _seed) 	{
+				fSeed=_seed;
+			}
+
 	/**
 	 * Export the events and all related information to host.
 	 */
@@ -335,6 +345,7 @@ private:
 
 	GLong_t fNEvents; ///< Number of events.
 	GInt_t fNDaughters;///< Number of daughters.
+	GInt_t fSeed;///< seed.
 	GLong_t fNAccepted;
 	GReal_t RND_Time;///< Random number generation time interval seconds.
 	GReal_t EVT_Time;///< Event generation time interval in seconds.
@@ -345,7 +356,6 @@ private:
 	RealVector_d fWeights;///< Device vector of weights.
 	BoolVector_d fAccRejFlags;///< Device vector of Accept/reject flags
 	Particles_d fDaughters[kMAXP];///< Array of device vectors with the daughter four-vectors
-	RealVector_d fRandNumbers;///<
 
 
 };
@@ -364,10 +374,13 @@ GULong_t PhaseSpace::Unweight()
 	}
 	else
 	{
-	mc_device_vector<GLong_t> Evt(fNEvents);
-	thrust::sequence(Evt.begin(), Evt.end());
 
-	thrust::transform(Evt.begin(), Evt.end(), fWeights.begin(),
+	// create iterators
+	thrust::counting_iterator<GLong_t> first(0);
+	thrust::counting_iterator<GLong_t> last = first + fNEvents;
+
+
+	thrust::transform(first, last, fWeights.begin(),
 			fAccRejFlags.begin(), FlagAcceptReject(fMaxWeight));
 
 	count = thrust::count(fAccRejFlags.begin(), fAccRejFlags.end(),
@@ -535,34 +548,11 @@ void PhaseSpace::Generate(const Vector4R fMother) {
 	cudaDeviceSetCacheConfig(cudaFuncCachePreferL1);
 #endif
 	/* random number generation */
-	timespec time_rnd_start, time_rnd_end;
-	clock_gettime(TIMER, &time_rnd_start);
 
-	mc_device_vector<GInt_t> Evt(  fNEvents );
-	thrust::sequence(Evt.begin(), Evt.end());
-
-	// a sequence counting up from 0
-	 thrust::counting_iterator<int> index_sequence_begin(0);
-
-
-
-
-
-	/*
-	thrust::for_each(Evt.begin(), Evt.end(),
-			RandGen(fNDaughters,
-					(thrust::raw_pointer_cast(fRandNumbers.data()))));
-					*/
-
-	thrust::transform( index_sequence_begin, index_sequence_begin + fRandNumbers.size() ,
-			fRandNumbers.begin(), RandGen2() );
-
-	clock_gettime(TIMER, &time_rnd_end);
-
-	RND_Time = ((GReal_t) (time_diff(time_rnd_start, time_rnd_end).tv_sec
-			+ time_diff(time_rnd_start, time_rnd_end).tv_nsec * 1.0e-9));
-
-
+	RND_Time = 0;
+	// create iterators
+	thrust::counting_iterator<GLong_t> first(0);
+	thrust::counting_iterator<GLong_t> last = first + fNEvents;
 
 	//Vai!!!
 
@@ -574,84 +564,84 @@ void PhaseSpace::Generate(const Vector4R fMother) {
 
 	case 2:
 
-		thrust::transform(Evt.begin(), Evt.end(),
+		thrust::transform(first, last,
 				thrust::make_zip_iterator(
 						thrust::make_tuple(fDaughters[0].begin(),
 								fDaughters[1].begin())), fWeights.begin(),
-				DecayMother(fMother, fMasses, fNDaughters, fRandNumbers));
+				DecayMother(fMother, fMasses, fNDaughters, fSeed));
 
 		break;
 
 	case 3:
 
-		thrust::transform(Evt.begin(), Evt.end(),
+		thrust::transform(first, last,
 				thrust::make_zip_iterator(
 						thrust::make_tuple(fDaughters[0].begin(),
 								fDaughters[1].begin(), fDaughters[2].begin())),
 				fWeights.begin(),
-				DecayMother(fMother, fMasses, fNDaughters, fRandNumbers));
+				DecayMother(fMother, fMasses, fNDaughters, fSeed));
 
 		break;
 	case 4:
 
-		thrust::transform(Evt.begin(), Evt.end(),
+		thrust::transform(first, last,
 				thrust::make_zip_iterator(
 						thrust::make_tuple(fDaughters[0].begin(),
 								fDaughters[1].begin(), fDaughters[2].begin(),
 								fDaughters[3].begin())), fWeights.begin(),
-				DecayMother(fMother, fMasses, fNDaughters, fRandNumbers));
+				DecayMother(fMother, fMasses, fNDaughters, fSeed));
 
 		break;
 	case 5:
 
-		thrust::transform(Evt.begin(), Evt.end(),
+		thrust::transform(first, last,
 				thrust::make_zip_iterator(
 						thrust::make_tuple(fDaughters[0].begin(),
 								fDaughters[1].begin(), fDaughters[2].begin(),
 								fDaughters[3].begin(), fDaughters[4].begin())),
 				fWeights.begin(),
-				DecayMother(fMother, fMasses, fNDaughters, fRandNumbers));
+				DecayMother(fMother, fMasses, fNDaughters, fSeed));
 
 		//}
 		break;
 	case 6:
 
-		thrust::transform(Evt.begin(), Evt.end(),
+		thrust::transform(first, last,
 				thrust::make_zip_iterator(
 						thrust::make_tuple(fDaughters[0].begin(),
 								fDaughters[1].begin(), fDaughters[2].begin(),
 								fDaughters[3].begin(), fDaughters[4].begin(),
 								fDaughters[5].begin())), fWeights.begin(),
-				DecayMother(fMother, fMasses, fNDaughters, fRandNumbers));
+				DecayMother(fMother, fMasses, fNDaughters, fSeed));
 
 		break;
 	case 7:
 
-		thrust::transform(Evt.begin(), Evt.end(),
+		thrust::transform(first, last,
 				thrust::make_zip_iterator(
 						thrust::make_tuple(fDaughters[0].begin(),
 								fDaughters[1].begin(), fDaughters[2].begin(),
 								fDaughters[3].begin(), fDaughters[4].begin(),
 								fDaughters[5].begin(), fDaughters[6].begin())),
 				fWeights.begin(),
-				DecayMother(fMother, fMasses, fNDaughters, fRandNumbers));
+				DecayMother(fMother, fMasses, fNDaughters, fSeed));
 
 		break;
 	case 8:
 
-		thrust::transform(Evt.begin(), Evt.end(),
+		thrust::transform(first, last,
 				thrust::make_zip_iterator(
 						thrust::make_tuple(fDaughters[0].begin(),
 								fDaughters[1].begin(), fDaughters[2].begin(),
 								fDaughters[3].begin(), fDaughters[4].begin(),
 								fDaughters[5].begin(), fDaughters[6].begin(),
 								fDaughters[7].begin())), fWeights.begin(),
-				DecayMother(fMother, fMasses, fNDaughters, fRandNumbers));
+				DecayMother(fMother, fMasses, fNDaughters, fSeed));
 
 		break;
 	case 9:
 
-		thrust::transform(Evt.begin(), Evt.end(),
+		thrust::transform(first, last,
 				thrust::make_zip_iterator(
 						thrust::make_tuple(fDaughters[0].begin(),
 								fDaughters[1].begin(), fDaughters[2].begin(),
@@ -659,7 +649,7 @@ void PhaseSpace::Generate(const Vector4R fMother) {
 								fDaughters[5].begin(), fDaughters[6].begin(),
 								fDaughters[7].begin(), fDaughters[8].begin())),
 				fWeights.begin(),
-				DecayMother(fMother, fMasses, fNDaughters, fRandNumbers));
+				DecayMother(fMother, fMasses, fNDaughters, fSeed));
 
 		break;
 
@@ -689,97 +679,99 @@ void PhaseSpace::Generate(Particles_d fMothers) {
 		cout << "fNEvents != fMothers.size()" << endl;
 
 	/* random number generation */
+	/*
 	timespec time_rnd_start, time_rnd_end;
 	clock_gettime(TIMER, &time_rnd_start);
 
-	mc_device_vector<GLong_t> Evt(fNEvents);
-	thrust::sequence(Evt.begin(), Evt.end());
-
-	thrust::for_each(Evt.begin(), Evt.end(),
-			RandGen(fNDaughters,
-					(thrust::raw_pointer_cast(fRandNumbers.data()))));
 
 	clock_gettime(TIMER, &time_rnd_end);
 
 	RND_Time = ((GReal_t) (time_diff(time_rnd_start, time_rnd_end).tv_sec
 			+ time_diff(time_rnd_start, time_rnd_end).tv_nsec * 1.0e-9));
+	*/
 
 	/* event generation */
 	timespec time_event_start, time_event_end;
 	clock_gettime(TIMER, &time_event_start);
 
+	RND_Time = 0.0;
+	// create iterators
+	thrust::counting_iterator<GLong_t> first(0);
+	thrust::counting_iterator<GLong_t> last = first + fNEvents;
+
+
 	switch (fNDaughters) {
 
 	case 2:
 
-		thrust::transform(Evt.begin(), Evt.end(),
+		thrust::transform(first, last,
 				thrust::make_zip_iterator(
 						thrust::make_tuple(fMothers.begin(),
 								fDaughters[0].begin(), fDaughters[1].begin())),
 				fWeights.begin(),
-				DecayMothers(fMasses, fNDaughters, fRandNumbers));
+				DecayMothers(fMasses, fNDaughters, fSeed));
 
 		break;
 
 	case 3:
 
-		thrust::transform(Evt.begin(), Evt.end(),
+		thrust::transform(first, last,
 				thrust::make_zip_iterator(
 						thrust::make_tuple(fMothers.begin(),
 								fDaughters[0].begin(), fDaughters[1].begin(),
 								fDaughters[2].begin())), fWeights.begin(),
-				DecayMothers(fMasses, fNDaughters, fRandNumbers));
+				DecayMothers(fMasses, fNDaughters, fSeed));
 
 		break;
 	case 4:
 
-		thrust::transform(Evt.begin(), Evt.end(),
+		thrust::transform(first, last,
 				thrust::make_zip_iterator(
 						thrust::make_tuple(fMothers.begin(),
 								fDaughters[0].begin(), fDaughters[1].begin(),
 								fDaughters[2].begin(), fDaughters[3].begin())),
 				fWeights.begin(),
-				DecayMothers(fMasses, fNDaughters, fRandNumbers));
+				DecayMothers(fMasses, fNDaughters, fSeed));
 
 		break;
 	case 5:
 
-		thrust::transform(Evt.begin(), Evt.end(),
+		thrust::transform(first, last,
 				thrust::make_zip_iterator(
 						thrust::make_tuple(fMothers.begin(),
 								fDaughters[0].begin(), fDaughters[1].begin(),
 								fDaughters[2].begin(), fDaughters[3].begin(),
 								fDaughters[4].begin())), fWeights.begin(),
-				DecayMothers(fMasses, fNDaughters, fRandNumbers));
+				DecayMothers(fMasses, fNDaughters, fSeed));
 
 		break;
 	case 6:
 
-		thrust::transform(Evt.begin(), Evt.end(),
+		thrust::transform(first, last,
 				thrust::make_zip_iterator(
 						thrust::make_tuple(fMothers.begin(),
 								fDaughters[0].begin(), fDaughters[1].begin(),
 								fDaughters[2].begin(), fDaughters[3].begin(),
 								fDaughters[4].begin(), fDaughters[5].begin())),
 				fWeights.begin(),
-				DecayMothers(fMasses, fNDaughters, fRandNumbers));
+				DecayMothers(fMasses, fNDaughters, fSeed));
 
 		break;
 	case 7:
 
-		thrust::transform(Evt.begin(), Evt.end(),
+		thrust::transform(first, last,
 				thrust::make_zip_iterator(
 						thrust::make_tuple(fMothers.begin(),
 								fDaughters[0].begin(), fDaughters[1].begin(),
 								fDaughters[2].begin(), fDaughters[3].begin(),
 								fDaughters[4].begin(), fDaughters[5].begin(),
 								fDaughters[6].begin())), fWeights.begin(),
-				DecayMothers(fMasses, fNDaughters, fRandNumbers));
+				DecayMothers(fMasses, fNDaughters, fSeed));
 
 		break;
 	case 8:
 
-		thrust::transform(Evt.begin(), Evt.end(),
+		thrust::transform(first, last,
 				thrust::make_zip_iterator(
 						thrust::make_tuple(fMothers.begin(),
 								fDaughters[0].begin(), fDaughters[1].begin(),
@@ -787,12 +779,12 @@ void PhaseSpace::Generate(Particles_d fMothers) {
 								fDaughters[4].begin(), fDaughters[5].begin(),
 								fDaughters[6].begin(), fDaughters[7].begin())),
 				fWeights.begin(),
-				DecayMothers(fMasses, fNDaughters, fRandNumbers));
+				DecayMothers(fMasses, fNDaughters, fSeed));
 
 		break;
 	case 9:
 
-		thrust::transform(Evt.begin(), Evt.end(),
+		thrust::transform(first, last,
 				thrust::make_zip_iterator(
 						thrust::make_tuple(fMothers.begin(),
 								fDaughters[0].begin(), fDaughters[1].begin(),
@@ -800,7 +792,7 @@ void PhaseSpace::Generate(Particles_d fMothers) {
 								fDaughters[4].begin(), fDaughters[5].begin(),
 								fDaughters[6].begin(), fDaughters[7].begin(),
 								fDaughters[8].begin())), fWeights.begin(),
-				DecayMothers(fMasses, fNDaughters, fRandNumbers));
+				DecayMothers(fMasses, fNDaughters, fSeed));
 
 		break;
 
