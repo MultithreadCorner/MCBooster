@@ -1,7 +1,8 @@
 var struct_m_c_booster_1_1_decay_mother =
 [
-    [ "DecayMother", "struct_m_c_booster_1_1_decay_mother.html#a7812806dae1288700a07d06275a72096", null ],
+    [ "DecayMother", "struct_m_c_booster_1_1_decay_mother.html#a5d7961da85ec6ab442c05e1c1705e488", null ],
     [ "bbsort", "struct_m_c_booster_1_1_decay_mother.html#a192e8d4506ef88182fcf0625235fc2dd", null ],
+    [ "hash", "struct_m_c_booster_1_1_decay_mother.html#ae90ee185e7b6aa923dded499b2b7b896", null ],
     [ "operator()", "struct_m_c_booster_1_1_decay_mother.html#a4f1f2515e3392cf4b7ecca6d4bbf32cc", null ],
     [ "operator()", "struct_m_c_booster_1_1_decay_mother.html#aba2f3fbc16f2b66fb8ffd4b9801cc9bf", null ],
     [ "operator()", "struct_m_c_booster_1_1_decay_mother.html#a9b9d89e39293dbad270e29f888128b65", null ],
@@ -18,7 +19,7 @@ var struct_m_c_booster_1_1_decay_mother =
     [ "fBeta2", "struct_m_c_booster_1_1_decay_mother.html#a980ce41f42f636369099256b7a9da900", null ],
     [ "fMasses", "struct_m_c_booster_1_1_decay_mother.html#a372a58661256036ee40738e817bbb0a5", null ],
     [ "fNDaughters", "struct_m_c_booster_1_1_decay_mother.html#a0e6dc3298db6f5373b3683a2ef34fc5e", null ],
-    [ "fRandNumbers", "struct_m_c_booster_1_1_decay_mother.html#a66687e9e8ba0b0512a3585c87ee0dca3", null ],
+    [ "fSeed", "struct_m_c_booster_1_1_decay_mother.html#ac14fe583108aad277a85d1cc9f3abdbd", null ],
     [ "fTeCmTm", "struct_m_c_booster_1_1_decay_mother.html#a9ca24800ce4fe028c472770e91c80bbe", null ],
     [ "fWtMax", "struct_m_c_booster_1_1_decay_mother.html#ab31ae651a439f9a56110e3f332836d30", null ]
 ];

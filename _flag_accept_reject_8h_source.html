@@ -167,7 +167,7 @@ $(document).ready(function(){initNavTree('_flag_accept_reject_8h_source.html',''
 <div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    }</div>
 <div class="line"><a name="l00073"></a><span class="lineno"><a class="line" href="struct_m_c_booster_1_1_flag_accept_reject.html#aa50ed6a7bd44e353273980e5f91ca52e">   73</a></span>&#160;    __host__ __device__ <a class="code" href="namespace_m_c_booster.html#aa541c03d9d5d1360adfecd4e6ea06b46">GBool_t</a> <a class="code" href="struct_m_c_booster_1_1_flag_accept_reject.html#aa50ed6a7bd44e353273980e5f91ca52e">operator ()</a>(<a class="code" href="namespace_m_c_booster.html#af0bc6d091a152257ed022e48f03b85ba">GLong_t</a> idx, <a class="code" href="namespace_m_c_booster.html#a539b95305ac246a489e03f513ba9d09e">GReal_t</a> weight)</div>
 <div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    {</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        <a class="code" href="namespace_m_c_booster.html#a005934c85c635b0a1193be1b5a708db6">GUInt_t</a> seed = <a class="code" href="struct_m_c_booster_1_1_flag_accept_reject.html#a3714203276a648e0eded4753d4d16f19">hash</a>(idx);</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        <a class="code" href="namespace_m_c_booster.html#a005934c85c635b0a1193be1b5a708db6">GUInt_t</a> seed = <a class="code" href="struct_m_c_booster_1_1_flag_accept_reject.html#a3714203276a648e0eded4753d4d16f19">hash</a>(idx+68464654684);</div>
 <div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        thrust::default_random_engine randEng(seed);</div>
 <div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        thrust::uniform_real_distribution&lt;GReal_t&gt; uniDist(0.0, wmax);</div>
 <div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;</div>
@@ -201,7 +201,7 @@ $(document).ready(function(){initNavTree('_flag_accept_reject_8h_source.html',''
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_8945b468631333c075f45842fdbae05b.html">mcbooster</a></li><li class="navelem"><a class="el" href="dir_ef572bccc2a0b61368ccd672c5c6515e.html">functors</a></li><li class="navelem"><a class="el" href="_flag_accept_reject_8h.html">FlagAcceptReject.h</a></li>
-    <li class="footer">Generated on Tue Apr 5 2016 01:07:52 for MCBooster by
+    <li class="footer">Generated on Sun Apr 10 2016 05:29:11 for MCBooster by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.10 </li>
   </ul>

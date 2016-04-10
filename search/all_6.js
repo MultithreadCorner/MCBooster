@@ -17,6 +17,7 @@ var searchData=
   ['getndaughters',['GetNDaughters',['../class_m_c_booster_1_1_phase_space.html#a781bb83e4c0f57bff5bbd9bc2cf0122d',1,'MCBooster::PhaseSpace']]],
   ['getnevents',['GetNEvents',['../class_m_c_booster_1_1_phase_space.html#ab5b671c57005fe9fc7962898bf5234f1',1,'MCBooster::PhaseSpace']]],
   ['getrndtime',['GetRndTime',['../class_m_c_booster_1_1_phase_space.html#a7f57932f43a8ad57536ed4414c4fd24c',1,'MCBooster::PhaseSpace']]],
+  ['getseed',['GetSeed',['../class_m_c_booster_1_1_phase_space.html#a175ef8d8e637af704a9854360642d8d0',1,'MCBooster::PhaseSpace']]],
   ['getweights',['GetWeights',['../class_m_c_booster_1_1_phase_space.html#a90ff4dfb19f529e23c85d738b8182232',1,'MCBooster::PhaseSpace']]],
   ['gfloat_5ft',['GFloat_t',['../namespace_m_c_booster.html#ad42ad1193a9aa61988ed9564b48e2e83',1,'MCBooster']]],
   ['gfunctional_2eh',['GFunctional.h',['../_g_functional_8h.html',1,'']]],

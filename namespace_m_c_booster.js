@@ -12,6 +12,7 @@ var namespace_m_c_booster =
     [ "isAccepted", "struct_m_c_booster_1_1is_accepted.html", "struct_m_c_booster_1_1is_accepted" ],
     [ "PhaseSpace", "class_m_c_booster_1_1_phase_space.html", "class_m_c_booster_1_1_phase_space" ],
     [ "RandGen", "struct_m_c_booster_1_1_rand_gen.html", "struct_m_c_booster_1_1_rand_gen" ],
+    [ "RandGen2", "struct_m_c_booster_1_1_rand_gen2.html", "struct_m_c_booster_1_1_rand_gen2" ],
     [ "Vector3R", "class_m_c_booster_1_1_vector3_r.html", "class_m_c_booster_1_1_vector3_r" ],
     [ "Vector4R", "class_m_c_booster_1_1_vector4_r.html", "class_m_c_booster_1_1_vector4_r" ]
 ];

@@ -120,7 +120,8 @@ $(document).ready(function(){initNavTree('index.html','');});
 <p>The libray core algorithm follow as close as it is possible the implementation of the class <a href="https://root.cern.ch/doc/master/TGenPhaseSpace_8cxx.html">TGenPhaseSpace</a> from <a href="https://root.cern.ch/">ROOT framwork</a>, which is based on the <a href="http://cernlib.web.cern.ch/cernlib/mc/genbod.html">GENBOD function (W515 from CERNLIB)</a> using the Raubold and Lynch method as described in</p>
 <p><a href="https://cds.cern.ch/record/275743/files/CERN-68-15.pdf">_F. James, Monte Carlo Phase Space, CERN 68-15 (1968)_</a>.</p>
 <h2>Main features </h2>
-<p>Generates phase space Monte Carlo samples with up to nine particles in the final state, using very simple and intuitive interface. Example: </p><div class="fragment"><div class="line"><span class="comment">//generating 10M events of B0 -&gt; J/psi K pi</span></div>
+<p>Generates phase space Monte Carlo samples with up to nine particles in the final state, using very simple and intuitive interface. Example:</p>
+<div class="fragment"><div class="line"><span class="comment">//generating 10M events of B0 -&gt; J/psi K pi</span></div>
 <div class="line"><span class="preprocessor">#include &lt;<a class="code" href="_g_types_8h.html">mcbooster/GTypes.h</a>&gt;</span></div>
 <div class="line"><span class="preprocessor">#include &lt;<a class="code" href="_vector4_r_8h.html">mcbooster/Vector4R.h</a>&gt;</span></div>
 <div class="line"><span class="preprocessor">#include &lt;<a class="code" href="_generate_8h.html">mcbooster/Generate.h</a>&gt;</span></div>
@@ -147,7 +148,7 @@ $(document).ready(function(){initNavTree('index.html','');});
 <div class="line">Events *GenEvents = <span class="keyword">new</span> Events(masses.size(), 10000000);</div>
 <div class="line">phsp.Export(GenEvents);</div>
 <div class="line">...</div>
-</div><!-- fragment --><p> Other key features are:</p>
+</div><!-- fragment --><p>Other key features are:</p>
 <ol type="1">
 <li>Decays can be generated with mother particles are rest or with a definite four-vector. this feature allows the generation of sequential decays.</li>
 <li>Generates weighted and "unweighted" samples simultaneously.</li>
@@ -207,7 +208,7 @@ $(document).ready(function(){initNavTree('index.html','');});
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Tue Apr 5 2016 01:07:52 for MCBooster by
+    <li class="footer">Generated on Sun Apr 10 2016 05:29:11 for MCBooster by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.10 </li>
   </ul>

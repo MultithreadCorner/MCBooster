@@ -12,6 +12,7 @@ var hierarchy =
     [ "MCBooster::isAccepted", "struct_m_c_booster_1_1is_accepted.html", null ],
     [ "MCBooster::PhaseSpace", "class_m_c_booster_1_1_phase_space.html", null ],
     [ "MCBooster::RandGen", "struct_m_c_booster_1_1_rand_gen.html", null ],
+    [ "MCBooster::RandGen2", "struct_m_c_booster_1_1_rand_gen2.html", null ],
     [ "strided_range< Iterator >", "classstrided__range.html", null ],
     [ "unary_function", null, [
       [ "strided_range< Iterator >::stride_functor", "structstrided__range_1_1stride__functor.html", null ]

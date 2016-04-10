@@ -36,7 +36,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "_calculate_8h.html",
-"struct_m_c_booster_1_1_calculate2.html#a6f9cda434fefada96cdf132ddb6b1c2d"
+"struct_m_c_booster_1_1_calculate2.html#a39a2550ea19aed4779eb4a22d1d571c1"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

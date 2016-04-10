@@ -29,7 +29,8 @@ var files =
     ] ],
     [ "MCBooster.h", "_m_c_booster_8h.html", "_m_c_booster_8h" ],
     [ "RandGen.h", "_rand_gen_8h.html", [
-      [ "RandGen", "struct_m_c_booster_1_1_rand_gen.html", "struct_m_c_booster_1_1_rand_gen" ]
+      [ "RandGen", "struct_m_c_booster_1_1_rand_gen.html", "struct_m_c_booster_1_1_rand_gen" ],
+      [ "RandGen2", "struct_m_c_booster_1_1_rand_gen2.html", "struct_m_c_booster_1_1_rand_gen2" ]
     ] ],
     [ "strided_iterator.h", "strided__iterator_8h.html", [
       [ "strided_range", "classstrided__range.html", "classstrided__range" ],

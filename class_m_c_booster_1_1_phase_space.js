@@ -16,7 +16,9 @@ var class_m_c_booster_1_1_phase_space =
     [ "GetNDaughters", "class_m_c_booster_1_1_phase_space.html#a781bb83e4c0f57bff5bbd9bc2cf0122d", null ],
     [ "GetNEvents", "class_m_c_booster_1_1_phase_space.html#ab5b671c57005fe9fc7962898bf5234f1", null ],
     [ "GetRndTime", "class_m_c_booster_1_1_phase_space.html#a7f57932f43a8ad57536ed4414c4fd24c", null ],
+    [ "GetSeed", "class_m_c_booster_1_1_phase_space.html#a175ef8d8e637af704a9854360642d8d0", null ],
     [ "GetWeights", "class_m_c_booster_1_1_phase_space.html#a90ff4dfb19f529e23c85d738b8182232", null ],
     [ "PDK", "class_m_c_booster_1_1_phase_space.html#a5dbc0d7599ea07a083c0a9ac284a4f9b", null ],
+    [ "SetSeed", "class_m_c_booster_1_1_phase_space.html#a94cc73c014db394e6788b8af586d9792", null ],
     [ "Unweight", "class_m_c_booster_1_1_phase_space.html#aba98bf5f6b770ae3516ab1fd04dd9ec9", null ]
 ];
