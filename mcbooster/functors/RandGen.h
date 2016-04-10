@@ -70,20 +70,41 @@ struct RandGen
 	__host__ __device__ void operator ()(GLong_t idx)
 	{
 		GUInt_t seed = hash(idx);
-		thrust::default_random_engine randEng(seed);
+     	thrust::random::default_random_engine randEng(seed);
 		thrust::uniform_real_distribution<GReal_t> uniDist(0.0, 1.0);
 
-		for (GInt_t i = 0; i < (3 * fNDaughters - 2); i++)
-		{
 
-			GInt_t ridx = i + idx * (3 * fNDaughters - 2);
-			fRndNumbers[ridx] = uniDist(randEng);
-
-		}
+	    fRndNumbers[idx] = uniDist(randEng);
 
 	}
 
 };
+
+struct RandGen2
+{
+	/**
+	 * RandGen2 ctor. Takes the number of daughter particles and the address of the array
+	 * of to be filled with random numbers
+	 */
+
+
+	/**
+	 * operator(). Calculate and set random numbers. It takes the index of the event.
+	 */
+	__host__ __device__ GReal_t operator ()(GInt_t idx)
+	{
+
+		thrust::random::default_random_engine randEng;
+		randEng.discard(idx);
+		thrust::uniform_real_distribution<GReal_t> uniDist(0.0, 1.0);
+
+		return uniDist(randEng);
+
+
+	}
+
+};
+
 }
 
 #endif /* RANDGEN_H_ */

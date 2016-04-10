@@ -43,18 +43,16 @@ namespace MCBooster
 
 struct DecayMothers
 {
-
+	const GInt_t fSeed;
 	const GInt_t fNDaughters;
-	const GReal_t* __restrict__ fRandNumbers;
 	const GReal_t* __restrict__ fMasses;
 
 	//constructor
 	DecayMothers(const mc_device_vector<GReal_t>& _masses,
-			const GInt_t _ndaughters,
-			const mc_device_vector<GReal_t>& _rnd) :
-			fRandNumbers(thrust::raw_pointer_cast(_rnd.data())), fMasses(
-					thrust::raw_pointer_cast(_masses.data())), fNDaughters(
-					_ndaughters)
+			const GInt_t _ndaughters, const GInt_t _seed ):
+			fMasses(thrust::raw_pointer_cast(_masses.data())),
+			fNDaughters(_ndaughters),
+			fSeed(_seed)
 	{
 	}
 
@@ -90,14 +88,29 @@ struct DecayMothers
 
 	}
 
+	__host__      __device__ GUInt_t hash(GUInt_t a)
+			{
+				a = (a + 0x7ed55d16) + (a << 12);
+				a = (a ^ 0xc761c23c) ^ (a >> 19);
+				a = (a + 0x165667b1) + (a << 5);
+				a = (a + 0xd3a2646c) ^ (a << 9);
+				a = (a + 0xfd7046c5) + (a << 3);
+				a = (a ^ 0xb55a4f09) ^ (a >> 16);
+				return a;
+			}
+
 	__host__      __device__ GReal_t process(const GInt_t evt, Vector4R** particles)
 	{
+
+
+		thrust::random::default_random_engine randEng( hash(evt)*fSeed);
+		thrust::uniform_real_distribution<GReal_t> uniDist(0.0, 1.0);
 
 		GReal_t fTeCmTm = 0.0, fWtMax = 0.0;
 
 		fTeCmTm = particles[0]->mass(); // total energy in C.M. minus the sum of the masses
 
-#pragma unroll 9
+		#pragma unroll 9
 		for (size_t n = 0; n < fNDaughters; n++)
 		{
 			fTeCmTm -= fMasses[n];
@@ -107,7 +120,7 @@ struct DecayMothers
 		GReal_t emmin = 0.0;
 		GReal_t wtmax = 1.0;
 
-#pragma unroll 9
+		#pragma unroll 9
 		for (size_t n = 1; n < fNDaughters; n++)
 		{
 			emmin += fMasses[n - 1];
@@ -136,9 +149,9 @@ struct DecayMothers
 
 		if (fNDaughters > 2)
 		{
-#pragma unroll 9
+			#pragma unroll 9
 			for (size_t n = 1; n < fNDaughters - 1; n++)
-				rno[n] = fRandNumbers[n - 1 + evt * fNDaughters];
+				rno[n] = uniDist(randEng) ;
 			bbsort(&rno[1], fNDaughters - 2);
 
 		}
@@ -146,7 +159,7 @@ struct DecayMothers
 
 		GReal_t invMas[kMAXP], sum = 0.0;
 
-#pragma unroll 9
+		#pragma unroll 9
 		for (size_t n = 0; n < fNDaughters; n++)
 		{
 			sum += fMasses[n];
@@ -161,7 +174,7 @@ struct DecayMothers
 
 		GReal_t pd[kMAXP];
 
-#pragma unroll 9
+		#pragma unroll 9
 		for (size_t n = 0; n < fNDaughters - 1; n++)
 		{
 			pd[n] = pdk(invMas[n + 1], invMas[n], fMasses[n + 1]);
@@ -175,7 +188,7 @@ struct DecayMothers
 		particles[1]->set(sqrt(pd[0] * pd[0] + fMasses[0] * fMasses[0]), 0.0,
 				pd[0], 0.0);
 
-#pragma unroll 9
+		#pragma unroll 9
 		for (size_t i = 1; i < fNDaughters; i++)
 		{
 
@@ -183,12 +196,9 @@ struct DecayMothers
 					sqrt(pd[i - 1] * pd[i - 1] + fMasses[i] * fMasses[i]), 0.0,
 					-pd[i - 1], 0.0);
 
-			GReal_t cZ = 2
-					* fRandNumbers[i - 1 + fNDaughters - 1 + evt * fNDaughters]
-					- 1;
+			GReal_t cZ = 2	* uniDist(randEng) -1 ;
 			GReal_t sZ = sqrt(1 - cZ * cZ);
-			GReal_t angY = 2.0 * PI
-					* fRandNumbers[i + fNDaughters - 1 + evt * fNDaughters];
+			GReal_t angY = 2.0 * PI	* uniDist(randEng);
 			GReal_t cY = cos(angY);
 			GReal_t sY = sin(angY);
 			for (size_t j = 0; j <= i; j++)
@@ -221,13 +231,12 @@ struct DecayMothers
 		//
 		//---> final boost of all particles to the mother's frame
 		//
-#pragma unroll 9
+		#pragma unroll 9
 		for (size_t n = 0; n < fNDaughters; n++)
 		{
 
 			particles[n + 1]->applyBoostTo(*particles[0]);
 
-			//printf("[%d] %f\n", n, particles[n+1]->mass() );
 		}
 
 		//
