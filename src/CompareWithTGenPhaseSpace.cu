@@ -54,6 +54,7 @@
 #include "TCanvas.h"
 #include "TApplication.h"
 #include "TGraph.h"
+#include "TLegend.h"
 
 using namespace std;
 
@@ -317,6 +318,8 @@ h2->Sumw2();
 
 	cout << "Event generation in ROOT: " << root_time_used << endl;
 
+	TLegend *leg;
+
 	for(GInt_t i=0; i<masses.size(); i++)
 	{
 		for(GInt_t j=0; j<masses.size(); j++)
@@ -327,10 +330,19 @@ h2->Sumw2();
 
 			H1D[index]->Draw("e0");
 			H1D[index]->SetMarkerColor(kBlue);
-			H1D[index]->SetMarkerSize(0.5);
+			H1D[index]->SetMarkerSize(1.0);
 			H1D[index]->SetMarkerStyle(8);
+			H1D[index]->SetStats(0);
+
 			H1D_ROOT[index]->Draw("HISTsame");
 			H1D_ROOT[index]->SetLineColor(kRed);
+			H1D_ROOT[index]->SetLineWidth(2);
+			H1D_ROOT[index]->SetStats(0);
+
+			leg = new TLegend(0.60,0.8,0.90,0.9);
+			leg->AddEntry(H1D[index] ,"mcbooster","l");
+			leg->AddEntry(H1D_ROOT[index] ,"TGenPhaseSpace","l");
+			leg->Draw();
 
 			c->Print( TString::Format("./histo_%d%d.pdf", i, j ) );
 
