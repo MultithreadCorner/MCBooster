@@ -72,7 +72,7 @@ struct FlagAcceptReject
 	 */
 	__host__ __device__ GBool_t operator ()(GLong_t idx, GReal_t weight)
 	{
-		GUInt_t seed = hash(idx);
+		GUInt_t seed = hash(idx+68464654684);
 		thrust::default_random_engine randEng(seed);
 		thrust::uniform_real_distribution<GReal_t> uniDist(0.0, wmax);
 
