@@ -1,3 +1,8 @@
+
+
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.1183871.svg)](https://doi.org/10.5281/zenodo.1183871)
+
+
 MCBooster
 =========
 Table of Contents
