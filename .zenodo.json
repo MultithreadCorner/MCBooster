@@ -1,0 +1,37 @@
+{
+    "description": "<p>Header only library to fast generation of large samples of phase space Monte Carlo using CUDA, OpenMP and TBB backdends.</p>", 
+    "license": "GPL-3.0", 
+    "title": "MultithreadCorner/MCBooster", 
+    "version": "v1.2.1", 
+    "upload_type": "software", 
+    "publication_date": "2018-02-24", 
+    "creators": [
+        {
+            "affiliation": "University of Cincinnati", 
+            "name": "Alves Jr, A.A."
+        }
+    ], 
+    "access_right": "open", 
+    "grants": [{'id': '10.13039/100000001::1414736'}],
+    "related_identifiers": [
+        {
+            "scheme": "url", 
+            "identifier": "https://github.com/MultithreadCorner/MCBooster/tree/v1.2.1", 
+            "relation": "isSupplementTo"
+        }, 
+        {
+            "scheme": "doi", 
+            "identifier": "10.5281/zenodo.1183870", 
+            "relation": "isPartOf"
+        },
+        {   "scheme": "url"
+            "identifier": "https://arxiv.org/abs/1702.05712", 
+            "relation": "isSupplementTo"
+        },
+        {
+            "scheme": "doi", 
+            "identifier": "10.1088/1742-6596/898/4/042038", 
+            "relation": "isSupplementTo"
+        }
+    ]
+}
